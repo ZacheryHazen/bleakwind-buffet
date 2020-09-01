@@ -11,21 +11,21 @@ namespace BleakwindBuffet.Data.Entrees
     */
     class DoubleDraugr
     {
-        bool bun = true;
+        private bool bun = true;
 
-        bool ketchup = true;
+        private bool ketchup = true;
 
-        bool mustard = true;
+        private bool mustard = true;
 
-        bool pickle = true;
+        private bool pickle = true;
 
-        bool cheese = true;
+        private bool cheese = true;
 
-        bool tomato = true;
+        private bool tomato = true;
 
-        bool lettuce = true;
+        private bool lettuce = true;
 
-        bool mayo = true;
+        private bool mayo = true;
 
         public bool Bun
         {
@@ -40,6 +40,7 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold bun");
                 }
+                bun = value;
             }
         }
 
@@ -56,6 +57,7 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold ketchup");
                 }
+                ketchup = value;
             }
         }
 
@@ -72,6 +74,7 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold mustard");
                 }
+                mustard = value;
             }
         }
 
@@ -88,6 +91,7 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold pickle");
                 }
+                pickle = value;
             }
         }
 
@@ -104,6 +108,7 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold cheese");
                 }
+                cheese = value;
             }
         }
 
@@ -120,6 +125,7 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold tomato");
                 }
+                tomato = value;
             }
         }
 
@@ -136,6 +142,7 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold lettuce");
                 }
+                lettuce = value;
             }
         }
 
@@ -152,13 +159,14 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold mayo");
                 }
+                mayo = value;
             }
         }
         public double Price { get; } = 7.32;
 
         public uint Calories { get; } = 843;
 
-        public List<string> SpecialInstructions { get; }
+        public List<string> SpecialInstructions { get; } = new List<string>();
 
         public override string ToString()
         {

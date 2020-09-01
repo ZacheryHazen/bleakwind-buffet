@@ -8,7 +8,7 @@ using System.Text;
  * Purpose: Class used to represent soda flavors through an enumeration
  */
 
-namespace Data.Enums
+namespace BleakwindBuffet.Data.Enums
 {
     /// <summary>
     /// Stores available flavors of soda

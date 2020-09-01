@@ -12,15 +12,15 @@ namespace BleakwindBuffet.Data.Entrees
     */
     class BriarheartBurger
     {
-        bool bun = true;
+        private bool bun = true;
 
-        bool ketchup = true;
+        private bool ketchup = true;
 
-        bool mustard = true;
+        private bool mustard = true;
 
-        bool pickle = true;
+        private bool pickle = true;
 
-        bool cheese = true;
+        private bool cheese = true;
 
         public bool Bun
         {
@@ -35,6 +35,7 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold bun");
                 }
+                bun = value;
             }
         }
 
@@ -51,6 +52,7 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold ketchup");
                 }
+                ketchup = value;
             }
         }
 
@@ -67,6 +69,7 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold mustard");
                 }
+                mustard = value;
             }
         }
 
@@ -83,6 +86,7 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold pickle");
                 }
+                pickle = value;
             }
         }
 
@@ -99,6 +103,7 @@ namespace BleakwindBuffet.Data.Entrees
                 {
                     SpecialInstructions.Add("Hold cheese");
                 }
+                cheese = value;
             }
         }
 
