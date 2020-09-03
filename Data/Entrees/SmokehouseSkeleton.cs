@@ -9,7 +9,7 @@ namespace BleakwindBuffet.Data.Entrees
     * Class name: SmokehouseSkeleton.cs
     * Purpose: Class used to represent the Smokehouse Skeleton entree via various fields and methods.
     */
-    class SmokehouseSkeleton
+    public class SmokehouseSkeleton
     {
         private bool sausageLink = true;
 

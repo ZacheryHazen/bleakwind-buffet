@@ -9,7 +9,7 @@ namespace BleakwindBuffet.Data.Entrees
     * Class name: ThalmorTriple.cs
     * Purpose: Class used to represent the Thalmor Triple entree via various fields and methods.
     */
-    class ThalmorTriple
+    public class ThalmorTriple
     {
         private bool bun = true;
 

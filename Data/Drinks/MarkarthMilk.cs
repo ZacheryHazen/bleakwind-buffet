@@ -10,7 +10,7 @@ namespace BleakwindBuffet.Data.Drinks
     * Class name: MarkarthMilk.cs
     * Purpose: Class used to represent the Markarth Milk drink via various fields and methods.
     */
-    class MarkarthMilk
+    public class MarkarthMilk
     {
         private bool ice = false;
 

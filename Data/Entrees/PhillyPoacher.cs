@@ -9,7 +9,7 @@ namespace BleakwindBuffet.Data.Entrees
     * Class name: PhillyPoacher.cs
     * Purpose: Class used to represent the Philly Poacher entree via various fields and methods.
     */
-    class PhillyPoacher
+    public class PhillyPoacher
     {
         private bool sirloin = true;
 

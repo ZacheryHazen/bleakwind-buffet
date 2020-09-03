@@ -10,7 +10,7 @@ namespace BleakwindBuffet.Data.Drinks
     * Class name: SailorSoda.cs
     * Purpose: Class used to represent the Sailor Soda drink via various fields and methods.
     */
-    class SailorSoda
+    public class SailorSoda
     {
         private bool ice = true;
 

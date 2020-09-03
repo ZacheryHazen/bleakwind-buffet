@@ -10,7 +10,7 @@ namespace BleakwindBuffet.Data.Entrees
     * Class name: BriarheartBurger.cs
     * Purpose: Class used to represent the Briarheart Burger entree via various fields and methods.
     */
-    class BriarheartBurger
+    public class BriarheartBurger
     {
         private bool bun = true;
 

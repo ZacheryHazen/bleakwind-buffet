@@ -10,7 +10,7 @@ namespace BleakwindBuffet.Data.Sides
     * Class name: DragonbornWaffleFries.cs
     * Purpose: Class used to represent the Dragonborn Waffle Fries side via various fields and methods.
     */
-    class DragonbornWaffleFries
+    public class DragonbornWaffleFries
     {
         private Size size = Size.Small;
         

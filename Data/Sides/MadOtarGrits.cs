@@ -10,7 +10,7 @@ namespace BleakwindBuffet.Data.Sides
     * Class name: MadOtarGrits.cs
     * Purpose: Class used to represent the Mad Otar Grits side via various fields and methods.
     */
-    class MadOtarGrits
+    public class MadOtarGrits
     {
         private Size size = Size.Small;
 

@@ -10,7 +10,7 @@ namespace BleakwindBuffet.Data.Drinks
     * Class name: AretinoAppleJuice.cs
     * Purpose: Class used to represent the Warrior Waterdrink via various fields and methods.
     */
-    class WarriorWater
+    public class WarriorWater
     {
         private bool ice = true;
 

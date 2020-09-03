@@ -10,7 +10,7 @@ namespace BleakwindBuffet.Data.Sides
     * Class name: FriedMiraak.cs
     * Purpose: Class used to represent the Fried Miraak side via various fields and methods.
     */
-    class FriedMiraak
+    public class FriedMiraak
     {
         private Size size = Size.Small;
 

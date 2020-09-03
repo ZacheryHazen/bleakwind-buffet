@@ -10,7 +10,7 @@ namespace BleakwindBuffet.Data.Drinks
     * Class name: CandlehearthCoffee.cs
     * Purpose: Class used to represent the Candlehearth Coffee drink via various fields and methods.
     */
-    class CandlehearthCoffee
+    public class CandlehearthCoffee
     {
         private bool ice = false;
 

@@ -10,7 +10,7 @@ namespace BleakwindBuffet.Data.Sides
     * Class name: VokunSalad.cs
     * Purpose: Class used to represent the Vokun Salad side via various fields and methods.
     */
-    class VokunSalad
+    public class VokunSalad
     {
         private Size size = Size.Small;
 
