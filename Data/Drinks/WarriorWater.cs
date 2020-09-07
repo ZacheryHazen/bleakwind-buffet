@@ -3,21 +3,28 @@ using System.Collections.Generic;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
 
+/*
+ * Author: Zach Hazen
+ * Purpose: Class used to represent the Warrior Water drink via various fields and methods.
+ */
+
 namespace BleakwindBuffet.Data.Drinks
 {
-    /*
-    * Author: Zach Hazen
-    * Class name: AretinoAppleJuice.cs
-    * Purpose: Class used to represent the Warrior Waterdrink via various fields and methods.
-    */
+    /// <summary>
+    /// Class used to represent the Warrior Water drink via various fields and methods.
+    /// </summary>
     public class WarriorWater
     {
+        // Declaring private backing variables
         private bool ice = true;
 
         private bool lemon = false;
 
         private Size size = Size.Small;
 
+        /// <summary>
+        /// If ice is to be served with the water
+        /// </summary>
         public bool Ice
         {
             get
@@ -33,6 +40,9 @@ namespace BleakwindBuffet.Data.Drinks
                 ice = value;
             }
         }
+        /// <summary>
+        /// If a lemon should be served with the water
+        /// </summary>
         public bool Lemon
         {
             get
@@ -48,6 +58,9 @@ namespace BleakwindBuffet.Data.Drinks
                 lemon = value;
             }
         }
+        /// <summary>
+        /// The size of the water
+        /// </summary>
         public Size Size {
             get
             {
@@ -58,6 +71,9 @@ namespace BleakwindBuffet.Data.Drinks
                 size = value;
             } 
         }
+        /// <summary>
+        /// The price of the water depending on its size
+        /// </summary>
         public double Price
         {
             get
@@ -76,6 +92,9 @@ namespace BleakwindBuffet.Data.Drinks
                 }
             }
         }
+        /// <summary>
+        /// The calories of the water
+        /// </summary>
         public uint Calories
         {
             get
@@ -94,8 +113,15 @@ namespace BleakwindBuffet.Data.Drinks
                 }
             }
         }
+        /// <summary>
+        /// A list of special instructions for preparing the water
+        /// </summary>
         public List<string> SpecialInstructions { get; } = new List<string>();
 
+        /// <summary>
+        /// Returns a description of the water
+        /// </summary>
+        /// <returns>A string containing a description of the water</returns>
         public override string ToString()
         {
             return (size + " Warrior Water");

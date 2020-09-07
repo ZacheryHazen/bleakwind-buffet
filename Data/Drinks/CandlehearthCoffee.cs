@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
 
+/*
+ * Author: Zach Hazen
+ * Purpose: Class used to represent the Candlehearth Coffee drink via various fields and methods.
+ */
+
 namespace BleakwindBuffet.Data.Drinks
 {
-    /*
-    * Author: Zach Hazen
-    * Class name: CandlehearthCoffee.cs
-    * Purpose: Class used to represent the Candlehearth Coffee drink via various fields and methods.
-    */
+    /// <summary>
+    /// Class used to represent the Candlehearth Coffee drink via various fields and methods.
+    /// </summary>
     public class CandlehearthCoffee
     {
+        // Declaring backing variables
         private bool ice = false;
 
         private bool decaf = false;
@@ -20,6 +24,9 @@ namespace BleakwindBuffet.Data.Drinks
 
         private Size size = Size.Small;
 
+        /// <summary>
+        /// IF the coffee is iced
+        /// </summary>
         public bool Ice
         {
             get
@@ -36,6 +43,9 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
+        /// <summary>
+        /// If the coffee is decaf
+        /// </summary>
         public bool Decaf
         {
             get
@@ -48,6 +58,9 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
+        /// <summary>
+        /// If there should be room left for cream so the coffee can later be served with cream
+        /// </summary>
         public bool RoomForCream
         {
             get
@@ -59,11 +72,14 @@ namespace BleakwindBuffet.Data.Drinks
                 roomForCream = value;
                 if (value == true)
                 {
-                    SpecialInstructions.Add("Add cream");
+                    SpecialInstructions.Add("Leave room for cream");
                 }
             }
         }
 
+        /// <summary>
+        /// The size of the coffee
+        /// </summary>
         public Size Size
         {
             get
@@ -75,6 +91,10 @@ namespace BleakwindBuffet.Data.Drinks
                 size = value;
             }
         }
+
+        /// <summary>
+        /// The price of the coffee depending on its size
+        /// </summary>
         public double Price
         {
             get
@@ -93,6 +113,9 @@ namespace BleakwindBuffet.Data.Drinks
                 }
             }
         }
+        /// <summary>
+        /// The calories of the coffee depending on its size
+        /// </summary>
         public uint Calories
         {
             get
@@ -111,8 +134,16 @@ namespace BleakwindBuffet.Data.Drinks
                 }
             }
         }
+
+        /// <summary>
+        /// A list of special instructions for preparing the coffee
+        /// </summary>
         public List<string> SpecialInstructions { get; } = new List<string>();
 
+        /// <summary>
+        /// Returns a description of the coffee
+        /// </summary>
+        /// <returns>A string containing a description of the coffee</returns>
         public override string ToString()
         {
             if (decaf)

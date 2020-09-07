@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
 
+/*
+ * Author: Zach Hazen
+ * Purpose: Class used to represent the Vokun Salad side via various fields and methods.
+ */
+
 namespace BleakwindBuffet.Data.Sides
 {
-    /*
-    * Author: Zach Hazen
-    * Class name: VokunSalad.cs
-    * Purpose: Class used to represent the Vokun Salad side via various fields and methods.
-    */
+    /// <summary>
+    /// Class used to represent the Vokar Salad side via various fields and methods.
+    /// </summary>
     public class VokunSalad
     {
+        // Declaring the private backing variable
         private Size size = Size.Small;
 
+        /// <summary>
+        /// The size of the Vokun Salad
+        /// </summary>
         public Size Size
         {
             get
@@ -26,6 +33,9 @@ namespace BleakwindBuffet.Data.Sides
             }
         }
 
+        /// <summary>
+        /// The price of the Vokun Salad depending on the size
+        /// </summary>
         public double Price
         {
             get
@@ -44,6 +54,9 @@ namespace BleakwindBuffet.Data.Sides
                 }
             }
         }
+        /// <summary>
+        /// The calories of the Vokun Salad depending on the size
+        /// </summary>
         public uint Calories
         {
             get
@@ -63,8 +76,15 @@ namespace BleakwindBuffet.Data.Sides
             }
         }
 
+        /// <summary>
+        /// A list of special instructions to be used when preparing the Vokun Salad
+        /// </summary>
         public List<string> SpecialInstructions { get; } = new List<string>();
 
+        /// <summary>
+        /// Returns a description of the Vokun Salad
+        /// </summary>
+        /// <returns>A string containing the description of the Vokun Salad</returns>
         public override string ToString()
         {
             return (size + " Vokun Salad");

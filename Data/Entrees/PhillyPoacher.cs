@@ -2,21 +2,29 @@
 using System.Collections.Generic;
 using System.Text;
 
+/*
+ * Author: Zach Hazen
+ * Purpose: Class used to represent the Philly Poacher entree via various fields and methods.
+ */
+
 namespace BleakwindBuffet.Data.Entrees
 {
-    /*
-    * Author: Zach Hazen
-    * Class name: PhillyPoacher.cs
-    * Purpose: Class used to represent the Philly Poacher entree via various fields and methods.
-    */
+
+    /// <summary>
+    /// Class used to represent the Philly Poacher entree via various fields and methods.
+    /// </summary>
     public class PhillyPoacher
     {
+        // Declaring the private backing variables
         private bool sirloin = true;
 
         private bool onion = true;
 
         private bool roll = true;
 
+        /// <summary>
+        /// If the Philly Poacher is to be served with sirloin
+        /// </summary>
         public bool Sirloin
         {
             get
@@ -34,6 +42,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Philly Poacher is to be served with onions
+        /// </summary>
         public bool Onion
         {
             get
@@ -51,6 +62,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Philly Poacher is to be served with a roll
+        /// </summary>
         public bool Roll
         {
             get
@@ -68,12 +82,25 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// The price of the Philly Poacher
+        /// </summary>
         public double Price { get; } = 7.23;
 
+        /// <summary>
+        /// The calories of the Philly Poacher
+        /// </summary>
         public uint Calories { get; } = 784;
 
+        /// <summary>
+        /// A list of special instructions to be used when preparing the Philly Poacher
+        /// </summary>
         public List<string> SpecialInstructions { get; } = new List<string>();
 
+        /// <summary>
+        /// Returns a description of the Philly Poacher
+        /// </summary>
+        /// <returns>A string containing the name of the Philly Poacher</returns>
         public override string ToString()
         {
             return ("Philly Poacher");

@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Text;
 
+/*
+ * Author: Zach Hazen
+ * Purpose: Class used to represent the Briarheart Burger entree via various fields and methods.
+ */
+
 namespace BleakwindBuffet.Data.Entrees
 {
-    /*
-    * Author: Zach Hazen
-    * Class name: BriarheartBurger.cs
-    * Purpose: Class used to represent the Briarheart Burger entree via various fields and methods.
-    */
+    /// <summary>
+    /// Class used to represent the Briarheart Burger entree via various fields and methods.
+    /// </summary>
     public class BriarheartBurger
     {
+        // Declaring private backing variables
         private bool bun = true;
 
         private bool ketchup = true;
@@ -22,6 +26,9 @@ namespace BleakwindBuffet.Data.Entrees
 
         private bool cheese = true;
 
+        /// <summary>
+        /// If the Briarheart Burger is to be served with a bun
+        /// </summary>
         public bool Bun
         {
             get
@@ -39,6 +46,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Briarheart Burger is to be served with ketchup
+        /// </summary>
         public bool Ketchup
         {
             get
@@ -56,6 +66,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Briarheart Burger is to be served with mustard
+        /// </summary>
         public bool Mustard
         {
             get
@@ -73,6 +86,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Briarheart Burger is to be served with pickles
+        /// </summary>
         public bool Pickle
         {
             get
@@ -90,6 +106,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Briarheart Burger is to be served with cheese
+        /// </summary>
         public bool Cheese
         {
             get
@@ -106,13 +125,25 @@ namespace BleakwindBuffet.Data.Entrees
                 cheese = value;
             }
         }
-
+        /// <summary>
+        /// The price of the Briarheart Burger
+        /// </summary>
         public double Price { get; } = 6.32;
 
+        /// <summary>
+        /// The calories of the Briarheart Burger
+        /// </summary>
         public uint Calories { get; } = 743;
 
+        /// <summary>
+        /// A list of special instructions for preparing the Briarheart Burger
+        /// </summary>
         public List<string> SpecialInstructions { get; } = new List<string>();
 
+        /// <summary>
+        /// Returns a description of the Briarheart Burger
+        /// </summary>
+        /// <returns>A string containing a simple description of the Briarheart Burger</returns>
         public override string ToString()
         {
             return ("Briarheart Burger");

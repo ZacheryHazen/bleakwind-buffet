@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
 
+/*
+ * Author: Zach Hazen
+ * Purpose: Class used to represent the Sailor Soda drink via various fields and methods.
+ */
+
 namespace BleakwindBuffet.Data.Drinks
 {
-    /*
-    * Author: Zach Hazen
-    * Class name: SailorSoda.cs
-    * Purpose: Class used to represent the Sailor Soda drink via various fields and methods.
-    */
+    /// <summary>
+    /// Class used to represent the Sailor Soda drink via various fields and methods.
+    /// </summary>
     public class SailorSoda
     {
+        // Declaring private backing variables
         private bool ice = true;
 
         private Size size = Size.Small;
 
         private Enums.SodaFlavor flavor = SodaFlavor.Cherry;
+        /// <summary>
+        /// If the soda should be served with ice
+        /// </summary>
         public bool Ice
         {
             get
@@ -32,6 +39,9 @@ namespace BleakwindBuffet.Data.Drinks
                 ice = value;
             }
         }
+        /// <summary>
+        /// The size of the soda
+        /// </summary>
         public Size Size {
             get
             {
@@ -42,6 +52,9 @@ namespace BleakwindBuffet.Data.Drinks
                 size = value;
             }
         }
+        /// <summary>
+        /// The flavor of the soda
+        /// </summary>
         public SodaFlavor Flavor {
             get
             {
@@ -52,6 +65,9 @@ namespace BleakwindBuffet.Data.Drinks
                 flavor = value;
             }
         }
+        /// <summary>
+        /// The price of the soda based on its size
+        /// </summary>
         public double Price {
             get
             {
@@ -69,6 +85,9 @@ namespace BleakwindBuffet.Data.Drinks
                 }
             }
         }
+        /// <summary>
+        /// The calories of the soda based on its size
+        /// </summary>
         public uint Calories {
             get
             {
@@ -86,11 +105,17 @@ namespace BleakwindBuffet.Data.Drinks
                 }
             }
         }
+        /// <summary>
+        /// Instructions to be used when preparing the soda
+        /// </summary>
         public List<string> SpecialInstructions { get; } = new List<string>();
-
+        /// <summary>
+        /// Returns a description of the soda
+        /// </summary>
+        /// <returns>A string containing a description of the soda</returns>
         public override string ToString()
         {
-            return (size + " " + flavor + " Sailor's Soda");
+            return (size + " " + flavor + " Sailor Soda");
         }
     }
 }

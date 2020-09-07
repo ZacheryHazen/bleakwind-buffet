@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
 
+/*
+ * Author: Zach Hazen
+ * Purpose: Class used to represent the Aretino Apple Juice drink via various fields and methods.
+ */
+
 namespace BleakwindBuffet.Data.Drinks
 {
-    /*
-    * Author: Zach Hazen
-    * Class name: AretinoAppleJuice.cs
-    * Purpose: Class used to represent the Aretino Apple Juice drink via various fields and methods.
-    */
+    /// <summary>
+    /// Class used to represent the Aretino Apple Juice drink via various fields and methods.
+    /// </summary>
     public class AretinoAppleJuice
     {
+        // Declaring backing variables
         private bool ice = false;
 
         private Size size = Size.Small;
 
+        /// <summary>
+        /// If the apple juice is served with ice
+        /// </summary>
         public bool Ice
         {
             get
@@ -31,6 +38,10 @@ namespace BleakwindBuffet.Data.Drinks
                 ice = value;
             }
         }
+
+        /// <summary>
+        /// The size of the apple juice
+        /// </summary>
         public Size Size
         {
             get
@@ -42,6 +53,10 @@ namespace BleakwindBuffet.Data.Drinks
                 size = value;
             }
         }
+
+        /// <summary>
+        /// The price of the apple juice depending on its size
+        /// </summary>
         public double Price
         {
             get
@@ -60,6 +75,10 @@ namespace BleakwindBuffet.Data.Drinks
                 }
             }
         }
+        
+        /// <summary>
+        /// The calories of the apple juice depending on its size
+        /// </summary>
         public uint Calories
         {
             get
@@ -78,8 +97,15 @@ namespace BleakwindBuffet.Data.Drinks
                 }
             }
         }
+        /// <summary>
+        /// A list of special instructions for preparing the apple juice.
+        /// </summary>
         public List<string> SpecialInstructions { get; } = new List<string>();
 
+        /// <summary>
+        /// Returns a description of the apple juice
+        /// </summary>
+        /// <returns>A string containing a description of the apple juice.</returns>
         public override string ToString()
         {
             return (size + " Aretino Apple Juice");

@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 
+/*
+ * Author: Zach Hazen
+ * Purpose: Class used to represent the Garden Orc Omelette entree via various fields and methods.
+ */
+
 namespace BleakwindBuffet.Data.Entrees
 {
-    /*
-    * Author: Zach Hazen
-    * Class name: GardenOrcOmelette.cs
-    * Purpose: Class used to represent the Garden Orc Omelette entree via various fields and methods.
-    */
+    /// <summary>
+    /// Class used to represent the Garden Orc Omelette entree via various fields and methods
+    /// </summary>
     public class GardenOrcOmelette
     {
+        // Declaring private backing variables
         private bool broccoli = true;
 
         private bool mushrooms = true;
@@ -18,6 +22,10 @@ namespace BleakwindBuffet.Data.Entrees
         private bool tomato = true;
 
         private bool cheddar = true;
+
+        /// <summary>
+        /// If the Garden Orc Omelette is to be served with broccoli
+        /// </summary>
         public bool Broccoli
         {
             get
@@ -35,6 +43,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Garden Orc Omelette is to be served with mushrooms
+        /// </summary>
         public bool Mushrooms
         {
             get
@@ -52,6 +63,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Garden Orc Omelette is to be served with tomatoes
+        /// </summary>
         public bool Tomato
         {
             get
@@ -69,6 +83,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Garden Orc Omelette is to be served with cheddar cheese
+        /// </summary>
         public bool Cheddar
         {
             get
@@ -85,12 +102,25 @@ namespace BleakwindBuffet.Data.Entrees
                 cheddar = value;
             }
         }
+        /// <summary>
+        /// The price of the Garden Orc Omelette
+        /// </summary>
         public double Price { get; } = 4.57;
 
+        /// <summary>
+        /// The calories of the Garden Orc Omelette
+        /// </summary>
         public uint Calories { get; } = 404;
 
+        /// <summary>
+        /// A list of special instructions to be used when preparing the Garden Orc Omelette
+        /// </summary>
         public List<string> SpecialInstructions { get; } = new List<string>();
 
+        /// <summary>
+        /// Returns a description of the Garden Orc Omelette
+        /// </summary>
+        /// <returns>A string containing the name of the Garden Orc Omelette</returns>
         public override string ToString()
         {
             return ("Garden Orc Omelette");

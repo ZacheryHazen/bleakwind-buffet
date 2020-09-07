@@ -4,7 +4,6 @@ using System.Text;
 
 /*
  * Author: Zach Hazen
- * Class name: SodaFlavor.cs
  * Purpose: Class used to represent soda flavors through an enumeration
  */
 

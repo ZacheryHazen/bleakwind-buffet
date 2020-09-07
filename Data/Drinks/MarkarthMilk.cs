@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
 
+/*
+ * Author: Zach Hazen
+ * Purpose: Class used to represent the Markarth Milk drink via various fields and methods.
+ */
+
 namespace BleakwindBuffet.Data.Drinks
 {
-    /*
-    * Author: Zach Hazen
-    * Class name: MarkarthMilk.cs
-    * Purpose: Class used to represent the Markarth Milk drink via various fields and methods.
-    */
+    /// <summary>
+    /// Class used to represent the Markarth Milk drink via various fields and methods.
+    /// </summary>
     public class MarkarthMilk
     {
+        // Declaring private backing variables
         private bool ice = false;
 
         private Size size = Size.Small;
 
+        /// <summary>
+        /// If ice should be added to the milk
+        /// </summary>
         public bool Ice
         {
             get
@@ -31,6 +38,9 @@ namespace BleakwindBuffet.Data.Drinks
                 ice = value;
             }
         }
+        /// <summary>
+        /// The size of the milk
+        /// </summary>
         public Size Size {
             get
             {
@@ -41,6 +51,9 @@ namespace BleakwindBuffet.Data.Drinks
                 size = value;
             }
         }
+        /// <summary>
+        /// The price of the milk based on its size
+        /// </summary>
         public double Price
         {
             get
@@ -59,6 +72,9 @@ namespace BleakwindBuffet.Data.Drinks
                 }
             }
         }
+        /// <summary>
+        /// The calories of the milk based on its size
+        /// </summary>
         public uint Calories
         {
             get
@@ -77,8 +93,15 @@ namespace BleakwindBuffet.Data.Drinks
                 }
             }
         }
+        /// <summary>
+        /// A list of special instructions for preparing the milk
+        /// </summary>
         public List<string> SpecialInstructions { get; } = new List<string>();
 
+        /// <summary>
+        /// Returns a description of the milk to be served.
+        /// </summary>
+        /// <returns>Returns a string containing a description of the milk</returns>
         public override string ToString()
         {
             return (size + " Markarth Milk");

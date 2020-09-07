@@ -16,16 +16,27 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [Fact]
         public void ShouldBeSmallByDefault()
         {
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            Assert.Equal(Size.Small, DWF.Size);
         }
 
         [Fact]
         public void ShouldBeAbleToSetSize()
         {
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            DWF.Size = Size.Large;
+            Assert.Equal(Size.Large, DWF.Size);
+            DWF.Size = Size.Medium;
+            Assert.Equal(Size.Medium, DWF.Size);
+            DWF.Size = Size.Small;
+            Assert.Equal(Size.Small, DWF.Size);
         }
 
         [Fact]
         public void ShouldReturnCorrectSpecialInstructions()
         {
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            Assert.Empty(DWF.SpecialInstructions);
         }
 
         [Theory]
@@ -34,6 +45,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [InlineData(Size.Large, 0.96)]
         public void ShouldReturnCorrectPriceBasedOnSize(Size size, double price)
         {
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            DWF.Size = size;
+            Assert.Equal(price, DWF.Price);
         }
 
         [Theory]
@@ -42,6 +56,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [InlineData(Size.Large, 100)]
         public void ShouldReturnCorrectCaloriesBasedOnSize(Size size, uint calories)
         {
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            DWF.Size = size;
+            Assert.Equal(calories, DWF.Calories);
         }
 
         [Theory]
@@ -50,6 +67,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [InlineData(Size.Large, "Large Dragonborn Waffle Fries")]
         public void ShouldReturnCorrectToStringBasedOnSize(Size size, string name)
         {
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            DWF.Size = size;
+            Assert.Equal(name, DWF.ToString());
         }
     }
 }

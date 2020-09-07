@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 
+/*
+ * Author: Zach Hazen
+ * Purpose: Class used to represent the Thalmor Triple entree via various fields and methods.
+ */
+
 namespace BleakwindBuffet.Data.Entrees
 {
-    /*
-    * Author: Zach Hazen
-    * Class name: ThalmorTriple.cs
-    * Purpose: Class used to represent the Thalmor Triple entree via various fields and methods.
-    */
+    /// <summary>
+    /// Class used to represent the Thalmor Triple entree via various fields and methods.
+    /// </summary>
     public class ThalmorTriple
     {
+        // Declaring the private backing variables
         private bool bun = true;
 
         private bool ketchup = true;
@@ -30,6 +34,9 @@ namespace BleakwindBuffet.Data.Entrees
         private bool bacon = true;
 
         private bool egg = true;
+        /// <summary>
+        /// If the Thalmor Triple is to be served with a bun
+        /// </summary>
         public bool Bun
         {
             get
@@ -47,6 +54,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Thalmor Triple is to be served with a ketchup
+        /// </summary>
         public bool Ketchup
         {
             get
@@ -64,6 +74,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Thalmor Triple is to be served with mustard
+        /// </summary>
         public bool Mustard
         {
             get
@@ -81,6 +94,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Thalmor Triple is to be served with pickles
+        /// </summary>
         public bool Pickle
         {
             get
@@ -98,6 +114,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Thalmor Triple is to be served with cheese
+        /// </summary>
         public bool Cheese
         {
             get
@@ -115,6 +134,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Thalmor Triple is to be served with tomatoes
+        /// </summary>
         public bool Tomato
         {
             get
@@ -132,6 +154,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Thalmor Triple is to be served with lettuce
+        /// </summary>
         public bool Lettuce
         {
             get
@@ -149,6 +174,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Thalmor Triple is to be served with mayo
+        /// </summary>
         public bool Mayo
         {
             get
@@ -166,6 +194,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Thalmor Triple is to be served with bacon
+        /// </summary>
         public bool Bacon
         {
             get
@@ -183,6 +214,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
         }
 
+        /// <summary>
+        /// If the Thalmor Triple is to be served with eggs
+        /// </summary>
         public bool Egg
         {
             get
@@ -199,12 +233,26 @@ namespace BleakwindBuffet.Data.Entrees
                 egg = value;
             }
         }
+
+        /// <summary>
+        /// The price of the Thalmor Triple
+        /// </summary>
         public double Price { get; } = 8.32;
 
+        /// <summary>
+        /// The calories of the Thalmor Triple
+        /// </summary>
         public uint Calories { get; } = 943;
 
+        /// <summary>
+        /// A list of special instructions to be used when preparing the Thalmor Triple
+        /// </summary>
         public List<string> SpecialInstructions { get; } = new List<string>();
 
+        /// <summary>
+        /// Returns a description of the Thalmor Triple
+        /// </summary>
+        /// <returns>A string containing the name of the Thalmor Triple</returns>
         public override string ToString()
         {
             return ("Thalmor Triple");

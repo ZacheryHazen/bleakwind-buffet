@@ -16,16 +16,27 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [Fact]
         public void ShouldBeSmallByDefault()
         {
+            FriedMiraak FM = new FriedMiraak();
+            Assert.Equal(Size.Small, FM.Size);
         }
 
         [Fact]
         public void ShouldBeAbleToSetSize()
         {
+            FriedMiraak FM = new FriedMiraak();
+            FM.Size = Size.Large;
+            Assert.Equal(Size.Large, FM.Size);
+            FM.Size = Size.Medium;
+            Assert.Equal(Size.Medium, FM.Size);
+            FM.Size = Size.Small;
+            Assert.Equal(Size.Small, FM.Size);
         }
 
         [Fact]
         public void ShouldReturnCorrectSpecialInstructions()
         {
+            FriedMiraak FM = new FriedMiraak();
+            Assert.Empty(FM.SpecialInstructions);
         }
 
         [Theory]
@@ -34,6 +45,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [InlineData(Size.Large, 2.88)]
         public void ShouldReturnCorrectPriceBasedOnSize(Size size, double price)
         {
+            FriedMiraak FM = new FriedMiraak();
+            FM.Size = size;
+            Assert.Equal(price, FM.Price);
         }
 
         [Theory]
@@ -42,6 +56,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [InlineData(Size.Large, 306)]
         public void ShouldReturnCorrectCaloriesBasedOnSize(Size size, uint calories)
         {
+            FriedMiraak FM = new FriedMiraak();
+            FM.Size = size;
+            Assert.Equal(calories, FM.Calories);
         }
 
         [Theory]
@@ -50,6 +67,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [InlineData(Size.Large, "Large Fried Miraak")]
         public void ShouldReturnCorrectToStringBasedOnSize(Size size, string name)
         {
+            FriedMiraak FM = new FriedMiraak();
+            FM.Size = size;
+            Assert.Equal(name, FM.ToString());
         }
     }
 }

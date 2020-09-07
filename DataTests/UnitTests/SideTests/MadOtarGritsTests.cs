@@ -16,16 +16,27 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [Fact]
         public void ShouldBeSmallByDefault()
         {
+            MadOtarGrits MOG = new MadOtarGrits();
+            Assert.Equal(Size.Small, MOG.Size);
         }
                 
         [Fact]
         public void ShouldBeAbleToSetSize()
         {
+            MadOtarGrits MOG = new MadOtarGrits();
+            MOG.Size = Size.Large;
+            Assert.Equal(Size.Large, MOG.Size);
+            MOG.Size = Size.Medium;
+            Assert.Equal(Size.Medium, MOG.Size);
+            MOG.Size = Size.Small;
+            Assert.Equal(Size.Small, MOG.Size);
         }
 
         [Fact]
         public void ShouldReturnCorrectStringOnSpecialInstructions()
         {
+            MadOtarGrits MOG = new MadOtarGrits();
+            Assert.Empty(MOG.SpecialInstructions);
         }
 
         [Theory]
@@ -34,6 +45,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [InlineData(Size.Large, 1.93)]
         public void ShouldReturnCorrectPriceBasedOnSize(Size size, double price)
         {
+            MadOtarGrits MOG = new MadOtarGrits();
+            MOG.Size = size;
+            Assert.Equal(price, MOG.Price);
         }
 
         [Theory]
@@ -42,6 +56,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [InlineData(Size.Large, 179)]
         public void ShouldReturnCorrectCaloriesBasedOnSize(Size size, uint calories)
         {
+            MadOtarGrits MOG = new MadOtarGrits();
+            MOG.Size = size;
+            Assert.Equal(calories, MOG.Calories);
         }
 
         [Theory]
@@ -50,6 +67,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [InlineData(Size.Large, "Large Mad Otar Grits")]
         public void ShouldReturnCorrectToStringBasedOnSize(Size size, string name)
         {
+            MadOtarGrits MOG = new MadOtarGrits();
+            MOG.Size = size;
+            Assert.Equal(name, MOG.ToString());
         }
     }
 }

@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
 
+/*
+ * Author: Zach Hazen
+ * Purpose: Class used to represent the Dragonborn Waffle Fries side via various fields and methods.
+ */
+
 namespace BleakwindBuffet.Data.Sides
 {
-    /*
-    * Author: Zach Hazen
-    * Class name: DragonbornWaffleFries.cs
-    * Purpose: Class used to represent the Dragonborn Waffle Fries side via various fields and methods.
-    */
+    /// <summary>
+    /// Class used to represent the Dragonborn Waffle Fries side via various fields and methods.
+    /// </summary>
     public class DragonbornWaffleFries
     {
+        // Declaring the private backing variable
         private Size size = Size.Small;
         
+        /// <summary>
+        /// The size of the Dragonborn Waffle Fries
+        /// </summary>
         public Size Size
         {
             get
@@ -26,6 +33,9 @@ namespace BleakwindBuffet.Data.Sides
             }
         }
 
+        /// <summary>
+        /// The price of the Dragonborn Waffle Fries depending on the size
+        /// </summary>
         public double Price
         {
             get
@@ -44,6 +54,10 @@ namespace BleakwindBuffet.Data.Sides
                 }
             }
         }
+
+        /// <summary>
+        /// The calories of the Dragonborn Waffle Fries depending on the size
+        /// </summary>
         public uint Calories
         {
             get
@@ -63,8 +77,15 @@ namespace BleakwindBuffet.Data.Sides
             }
         }
 
+        /// <summary>
+        /// A list of special instructions to be used when preparing the Dragonborn Waffle Fries
+        /// </summary>
         public List<string> SpecialInstructions { get; } = new List<string>();
 
+        /// <summary>
+        /// Returns a description of the Dragornborn Waffle Fries
+        /// </summary>
+        /// <returns>A string containing the description of the Dragonborn Waffle Fries</returns>
         public override string ToString()
         {
             return (size + " Dragonborn Waffle Fries");

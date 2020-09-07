@@ -15,41 +15,66 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         [Fact]
         public void ShouldInlcudeSirloinByDefault()
         {
+            PhillyPoacher PP = new PhillyPoacher();
+            Assert.True(PP.Sirloin);
         }
 
         [Fact]
         public void ShouldInlcudeOnionByDefault()
         {
+            PhillyPoacher PP = new PhillyPoacher();
+            Assert.True(PP.Onion);
         }
 
         [Fact]
         public void ShouldInlcudeRollByDefault()
         {
+            PhillyPoacher PP = new PhillyPoacher();
+            Assert.True(PP.Roll);
         }
 
         [Fact]
         public void ShouldBeAbleToSetSirloin()
         {
+            PhillyPoacher PP = new PhillyPoacher();
+            PP.Sirloin = false;
+            Assert.False(PP.Sirloin);
+            PP.Sirloin = true;
+            Assert.True(PP.Sirloin);
         }
 
         [Fact]
         public void ShouldBeAbleToSetOnions()
         {
+            PhillyPoacher PP = new PhillyPoacher();
+            PP.Onion = false;
+            Assert.False(PP.Onion);
+            PP.Onion = true;
+            Assert.True(PP.Onion);
         }
 
         [Fact]
         public void ShouldBeAbleToSetRoll()
         {
+            PhillyPoacher PP = new PhillyPoacher();
+            PP.Roll = false;
+            Assert.False(PP.Roll);
+            PP.Roll = true;
+            Assert.True(PP.Roll);
         }
 
         [Fact]
         public void ShouldReturnCorrectPrice()
         {
+            PhillyPoacher PP = new PhillyPoacher();
+            Assert.Equal(7.23, PP.Price);
         }
 
         [Fact]
         public void ShouldReturnCorrectCalories()
         {
+            PhillyPoacher PP = new PhillyPoacher();
+            Assert.Equal((double)784, PP.Calories);
         }
 
         [Theory]
@@ -58,11 +83,23 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         public void ShouldReturnCorrectSpecialInstructions(bool includeSirloin, bool includeOnion,
                                                             bool includeRoll)
         {
+            PhillyPoacher PP = new PhillyPoacher();
+            PP.Sirloin = includeSirloin;
+            PP.Onion = includeOnion;
+            PP.Roll = includeRoll;
+
+            if (!PP.Sirloin) Assert.Contains("Hold sirloin", PP.SpecialInstructions);
+            if (!PP.Onion) Assert.Contains("Hold onions", PP.SpecialInstructions);
+            if (!PP.Roll) Assert.Contains("Hold roll", PP.SpecialInstructions);
+
+            if (PP.Sirloin && PP.Onion && PP.Roll) Assert.Empty(PP.SpecialInstructions);
         }
 
         [Fact]
         public void ShouldReturnCorrectToString()
         {
+            PhillyPoacher PP = new PhillyPoacher();
+            Assert.Equal("Philly Poacher", PP.ToString());
         }
     }
 }
