@@ -86,7 +86,7 @@ namespace BleakwindBuffet.Data.Entrees
         /// <summary>
         /// If the Smokehouse Skeleton is to be served with pancakes
         /// </summary>
-        public bool Pancakes
+        public bool Pancake
         {
             get
             {
@@ -97,7 +97,7 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 if (value == false)
                 {
-                    SpecialInstructions.Add("Hold pancakes");
+                    SpecialInstructions.Add("Hold pancake");
                 }
                 pancake = value;
             }
