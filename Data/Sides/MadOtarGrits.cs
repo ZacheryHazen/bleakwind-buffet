@@ -13,7 +13,7 @@ namespace BleakwindBuffet.Data.Sides
     /// <summary>
     /// Class used to represent the Mad Otar Grits side via various fields and methods.
     /// </summary>
-    public class MadOtarGrits
+    public class MadOtarGrits : Side, IOrderItem
     {
         // Declaring the private backing variable
         private Size size = Size.Small;
@@ -21,7 +21,7 @@ namespace BleakwindBuffet.Data.Sides
         /// <summary>
         /// The size of the Mad Otar Grits
         /// </summary>
-        public Size Size
+        public override Size Size
         {
             get
             {
@@ -36,7 +36,7 @@ namespace BleakwindBuffet.Data.Sides
         /// <summary>
         /// The price of the Mad Otar Grits depending on the size
         /// </summary>
-        public double Price
+        public override double Price
         {
             get
             {
@@ -57,7 +57,7 @@ namespace BleakwindBuffet.Data.Sides
         /// <summary>
         /// The calories of the Mad Otar Grits depending on the size
         /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
@@ -79,7 +79,7 @@ namespace BleakwindBuffet.Data.Sides
         /// <summary>
         /// A list of special instructions to be used when preparing the Mad Otar Grits
         /// </summary>
-        public List<string> SpecialInstructions { get; } = new List<string>();
+        public override List<string> SpecialInstructions { get; } = new List<string>();
 
         /// <summary>
         /// Returns a description of the Mad Otar Grits

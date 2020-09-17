@@ -13,7 +13,7 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Class used to represent the Markarth Milk drink via various fields and methods.
     /// </summary>
-    public class MarkarthMilk
+    public class MarkarthMilk : Drink, IOrderItem
     {
         // Declaring private backing variables
         private bool ice = false;
@@ -41,7 +41,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The size of the milk
         /// </summary>
-        public Size Size {
+        public override Size Size {
             get
             {
                 return size;
@@ -54,7 +54,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The price of the milk based on its size
         /// </summary>
-        public double Price
+        public override double Price
         {
             get
             {
@@ -75,7 +75,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The calories of the milk based on its size
         /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
@@ -96,7 +96,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// A list of special instructions for preparing the milk
         /// </summary>
-        public List<string> SpecialInstructions { get; } = new List<string>();
+        public override List<string> SpecialInstructions { get; } = new List<string>();
 
         /// <summary>
         /// Returns a description of the milk to be served.

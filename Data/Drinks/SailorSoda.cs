@@ -13,7 +13,7 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Class used to represent the Sailor Soda drink via various fields and methods.
     /// </summary>
-    public class SailorSoda
+    public class SailorSoda : Drink, IOrderItem
     {
         // Declaring private backing variables
         private bool ice = true;
@@ -42,7 +42,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The size of the soda
         /// </summary>
-        public Size Size {
+        public override Size Size {
             get
             {
                 return size;
@@ -68,7 +68,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The price of the soda based on its size
         /// </summary>
-        public double Price {
+        public override double Price {
             get
             {
                 if (size == Size.Small)
@@ -88,7 +88,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The calories of the soda based on its size
         /// </summary>
-        public uint Calories {
+        public override uint Calories {
             get
             {
                 if (size == Size.Small)
@@ -108,7 +108,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// Instructions to be used when preparing the soda
         /// </summary>
-        public List<string> SpecialInstructions { get; } = new List<string>();
+        public override List<string> SpecialInstructions { get; } = new List<string>();
         /// <summary>
         /// Returns a description of the soda
         /// </summary>

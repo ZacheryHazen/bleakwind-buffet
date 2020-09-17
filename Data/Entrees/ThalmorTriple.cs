@@ -12,7 +12,7 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class used to represent the Thalmor Triple entree via various fields and methods.
     /// </summary>
-    public class ThalmorTriple
+    public class ThalmorTriple : Entree, IOrderItem
     {
         // Declaring the private backing variables
         private bool bun = true;
@@ -237,17 +237,17 @@ namespace BleakwindBuffet.Data.Entrees
         /// <summary>
         /// The price of the Thalmor Triple
         /// </summary>
-        public double Price { get; } = 8.32;
+        public override double Price { get; } = 8.32;
 
         /// <summary>
         /// The calories of the Thalmor Triple
         /// </summary>
-        public uint Calories { get; } = 943;
+        public override uint Calories { get; } = 943;
 
         /// <summary>
         /// A list of special instructions to be used when preparing the Thalmor Triple
         /// </summary>
-        public List<string> SpecialInstructions { get; } = new List<string>();
+        public override List<string> SpecialInstructions { get; } = new List<string>();
 
         /// <summary>
         /// Returns a description of the Thalmor Triple

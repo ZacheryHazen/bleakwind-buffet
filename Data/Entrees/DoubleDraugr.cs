@@ -12,7 +12,7 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class used to represent the Double Draugr entree via various fields and methods.
     /// </summary>
-    public class DoubleDraugr
+    public class DoubleDraugr : Entree, IOrderItem
     {
         // Declaring private backing variables
         private bool bun = true;
@@ -193,17 +193,17 @@ namespace BleakwindBuffet.Data.Entrees
         /// <summary>
         /// The price of the Double Draugr
         /// </summary>
-        public double Price { get; } = 7.32;
+        public override double Price { get; } = 7.32;
 
         /// <summary>
         /// The calories of the Double Draugr
         /// </summary>
-        public uint Calories { get; } = 843;
+        public override uint Calories { get; } = 843;
 
         /// <summary>
         /// A list of special instructions to prepare the Double Draugr
         /// </summary>
-        public List<string> SpecialInstructions { get; } = new List<string>();
+        public override List<string> SpecialInstructions { get; } = new List<string>();
         /// <summary>
         /// Returns a description of the Double Draugr
         /// </summary>

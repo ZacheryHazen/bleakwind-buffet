@@ -11,7 +11,21 @@ using BleakwindBuffet.Data.Entrees;
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
     public class DoubleDraugrTests
-    {   
+    {
+        [Fact]
+        public void ShouldBeAssignableFromIOrderItemInterface()
+        {
+            DoubleDraugr DD = new DoubleDraugr();
+            Assert.IsAssignableFrom<IOrderItem>(DD);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableFromAbstractEntreeClass()
+        {
+            DoubleDraugr DD = new DoubleDraugr();
+            Assert.IsAssignableFrom<Entree>(DD);
+        }
+
         [Fact]
         public void ShouldIncludeBunByDefault()
         {

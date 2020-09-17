@@ -13,7 +13,7 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Class used to represent the Warrior Water drink via various fields and methods.
     /// </summary>
-    public class WarriorWater
+    public class WarriorWater : Drink, IOrderItem
     {
         // Declaring private backing variables
         private bool ice = true;
@@ -61,7 +61,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The size of the water
         /// </summary>
-        public Size Size {
+        public override Size Size {
             get
             {
                 return size;
@@ -74,7 +74,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The price of the water depending on its size
         /// </summary>
-        public double Price
+        public override double Price
         {
             get
             {
@@ -95,7 +95,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The calories of the water
         /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
@@ -116,7 +116,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// A list of special instructions for preparing the water
         /// </summary>
-        public List<string> SpecialInstructions { get; } = new List<string>();
+        public override List<string> SpecialInstructions { get; } = new List<string>();
 
         /// <summary>
         /// Returns a description of the water
