@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Author: Zach Hazen
+ * Class Name: IOrderItem.cs
+ * Purpose: Interface to be implemented by all items in the Bleakwind Buffet menu.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 

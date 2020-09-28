@@ -151,6 +151,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             CC.Size = size;
 
             if (decaf) Assert.Equal(name, CC.ToString());
+
+            else Assert.Equal(name, CC.ToString());
             
         }
     }

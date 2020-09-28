@@ -1,0 +1,28 @@
+﻿<!-- Name: Zachery Hazen
+     Class: OrderComponent.xaml
+     Purpose: Displays ordered items in a ListView. ALlows users to proceed to checkout or cancel their order.
+-->
+<UserControl x:Class="PointOfSale.OrderComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="200">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" FontWeight="Bold" FontSize="20">
+            Items for Order:
+        </TextBlock>
+
+        <Button DockPanel.Dock="Bottom">
+            Move to Checkout
+        </Button>
+        <Button DockPanel.Dock="Bottom">
+            Cancel Order
+        </Button>
+        <TextBlock DockPanel.Dock="Bottom" Name="totalsTextBlock" Height="20"/>
+        
+        <ListView Name="itemsListView"/>
+    </DockPanel>
+</UserControl>

@@ -1,4 +1,11 @@
-﻿using BleakwindBuffet.Data.Enums;
+﻿/*
+ * Author: Zach Hazen
+ * Class Name: Side.cs
+ * Purpose: Abstract class to be implemented by all side items in the Bleakwind Buffet.
+ */
+
+
+using BleakwindBuffet.Data.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;

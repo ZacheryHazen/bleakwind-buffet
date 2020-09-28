@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Author: Zach Hazen
+ * Class Name: Entree.cs
+ * Purpose: Abstract class to be implemented by all entree items in the Bleakwind Buffet.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 

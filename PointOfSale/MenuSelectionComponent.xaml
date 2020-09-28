@@ -1,0 +1,152 @@
+﻿<!-- Name: Zachery Hazen
+     Class: MenuSelectionComponent.xaml
+     Purpose: Displays all available order items from the Bleakwind Buffet.
+-->
+    <UserControl x:Class="PointOfSale.MenuSelectionComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Grid.Row="0" Grid.ColumnSpan="6">
+            Add To Order:
+        </TextBlock>
+        
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="2">
+            <TextBlock.LayoutTransform>
+                <RotateTransform Angle="-90"></RotateTransform>
+            </TextBlock.LayoutTransform>
+            Entrees
+        </TextBlock>
+
+        <Border Padding ="15" Grid.Row="1" Grid.Column="1">
+            <Button Name="briarheartBurgerButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Briarheart Burger" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="1" Grid.Column="2">
+            <Button Name="doubleDraugrButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Double Draugr" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="1" Grid.Column="3">
+            <Button Name="gardenOrcOmeletteButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Garden Orc Omelette" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="1" Grid.Column="4">
+            <Button Name="phillyPoacherButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Philly Poacher" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="1" Grid.Column="5">
+            <Button Name="smokehouseSkeletonButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Smokehouse Skeleton" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="2" Grid.Column="1">
+            <Button Name="thalmorTripleButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Thalmor Triple" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="2" Grid.Column="2">
+            <Button Name="thugsTBoneButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Thugs T-Bone" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+     
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3">
+            <TextBlock.LayoutTransform>
+                <RotateTransform Angle="-90"></RotateTransform>
+            </TextBlock.LayoutTransform>
+            Sides
+        </TextBlock>
+
+        <Border Padding ="15" Grid.Row="3" Grid.Column="1">
+            <Button Name="dragonbornWaffleFriesButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Dragonborn Waffle Fries" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="3" Grid.Column="2">
+            <Button Name="friedMiraakButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Fried Miraak" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="3" Grid.Column="3">
+            <Button Name="madOtarGritsButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Mad Otar Grits" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="3" Grid.Column="4">
+            <Button Name="vokunSaladButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Vokun Salad" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4">
+            <TextBlock.LayoutTransform>
+                <RotateTransform Angle="-90"></RotateTransform>
+            </TextBlock.LayoutTransform>
+            Drinks
+        </TextBlock>
+
+        <Border Padding ="15" Grid.Row="4" Grid.Column="1">
+            <Button Name="aretinoAppleJuiceButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Aretino Apple Juice" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="4" Grid.Column="2">
+            <Button Name="candlehearthCoffeeButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Candlehearth Coffee" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="4" Grid.Column="3">
+            <Button Name="markarthMilkButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Markarth Milk" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="4" Grid.Column="4">
+            <Button Name="sailorSodaButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Sailor Soda" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+
+        <Border Padding ="15" Grid.Row="4" Grid.Column="5">
+            <Button Name="warriorWaterButton" Click="OrderChoiceSelected">
+                <TextBlock Text="Warrior Water" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+        </Border>
+    </Grid>
+</UserControl>

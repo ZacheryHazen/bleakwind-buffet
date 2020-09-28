@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Author: Zach Hazen
+ * Class Name: Menu.cs
+ * Purpose: Static class used to display all available options to be ordered from the Bleakwind Buffet.
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using BleakwindBuffet.Data.Entrees;

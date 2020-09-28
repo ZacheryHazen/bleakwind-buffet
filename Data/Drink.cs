@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Author: Zach Hazen
+ * Class Name: Drink.cs
+ * Purpose: Abstract class to be implemented by all drink items in the Bleakwind Buffet.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
