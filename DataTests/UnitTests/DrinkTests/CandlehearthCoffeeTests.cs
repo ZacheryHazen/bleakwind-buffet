@@ -9,11 +9,19 @@ using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Drinks;
 using NuGet.Frameworks;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 {
     public class CandlehearthCoffeeTests
     {
+        [Fact]
+        public void ShouldBeAssignableFromINotifyPropertyChangedInterface()
+        {
+            CandlehearthCoffee CC = new CandlehearthCoffee();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(CC);
+        }
+
         [Fact]
         public void ShouldBeAssignableFromIOrderItemInterface()
         {
@@ -153,7 +161,34 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             if (decaf) Assert.Equal(name, CC.ToString());
 
             else Assert.Equal(name, CC.ToString());
-            
+        }
+
+        [Fact]
+        public void ShouldNotifyIfIceChanges()
+        {
+            CandlehearthCoffee CC= new CandlehearthCoffee();
+            Assert.PropertyChanged(CC, "Ice", () => CC.Ice = true);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfDecafChanges()
+        {
+            CandlehearthCoffee CC = new CandlehearthCoffee();
+            Assert.PropertyChanged(CC, "Decaf", () => CC.Decaf = true);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfRoomForCreamChanges()
+        {
+            CandlehearthCoffee CC = new CandlehearthCoffee();
+            Assert.PropertyChanged(CC, "RoomForCream", () => CC.RoomForCream = true);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfSizeChanges()
+        {
+            CandlehearthCoffee CC = new CandlehearthCoffee();
+            Assert.PropertyChanged(CC, "Size", () => CC.Size = Size.Large);
         }
     }
 }

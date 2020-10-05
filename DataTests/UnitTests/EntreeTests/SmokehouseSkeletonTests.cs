@@ -7,11 +7,19 @@ using Xunit;
 
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
     public class SmokehouseSkeletonTests
     {
+        [Fact]
+        public void ShouldBeAssignableFromINotifyPropertyChangedInterface()
+        {
+            SmokehouseSkeleton SS = new SmokehouseSkeleton();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(SS);
+        }
+
         [Fact]
         public void ShouldBeAssignableFromIOrderItemInterface()
         {
@@ -133,6 +141,34 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         {
             SmokehouseSkeleton SS = new SmokehouseSkeleton();
             Assert.Equal("Smokehouse Skeleton", SS.ToString());
+        }
+
+        [Fact]
+        public void ShouldNotifyIfSausageLinkChanges()
+        {
+            SmokehouseSkeleton SS = new SmokehouseSkeleton();
+            Assert.PropertyChanged(SS, "SausageLink", () =>SS.SausageLink = false);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfEggChanges()
+        {
+            SmokehouseSkeleton SS = new SmokehouseSkeleton();
+            Assert.PropertyChanged(SS, "Egg", () => SS.Egg = false);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfHashBrownsChanges()
+        {
+            SmokehouseSkeleton SS = new SmokehouseSkeleton();
+            Assert.PropertyChanged(SS, "HashBrowns", () => SS.HashBrowns = false);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfPancakeChanges()
+        {
+            SmokehouseSkeleton SS = new SmokehouseSkeleton();
+            Assert.PropertyChanged(SS, "Pancake", () => SS.Pancake = false);
         }
     }
 }

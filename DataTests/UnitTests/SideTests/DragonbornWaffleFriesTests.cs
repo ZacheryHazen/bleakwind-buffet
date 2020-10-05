@@ -8,11 +8,19 @@ using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Sides;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.SideTests
 {
     public class DragonbornWaffleFriesTests
     {
+        [Fact]
+        public void ShouldBeAssignableFromINotifyPropertyChangedInterface()
+        {
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(DWF);
+        }
+
         [Fact]
         public void ShouldBeAssignableFromIOrderItemInterface()
         {
@@ -84,6 +92,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             DragonbornWaffleFries DWF = new DragonbornWaffleFries();
             DWF.Size = size;
             Assert.Equal(name, DWF.ToString());
+        }
+
+        [Fact]
+        public void ShouldNotifyIfSizeChanges()
+        {
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            Assert.PropertyChanged(DWF, "Size", () => DWF.Size = Size.Large);
         }
     }
 }

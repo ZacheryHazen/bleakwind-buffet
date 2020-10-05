@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
 
@@ -13,8 +14,9 @@ namespace BleakwindBuffet.Data.Sides
     /// <summary>
     /// Class used to represent the Vokar Salad side via various fields and methods.
     /// </summary>
-    public class VokunSalad : Side, IOrderItem
+    public class VokunSalad : Side, IOrderItem, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         // Declaring the private backing variable
         private Size size = Size.Small;
 
@@ -30,6 +32,7 @@ namespace BleakwindBuffet.Data.Sides
             set
             {
                 size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
             }
         }
 

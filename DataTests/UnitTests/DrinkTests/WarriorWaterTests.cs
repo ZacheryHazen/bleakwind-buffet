@@ -12,11 +12,19 @@ using System.Text;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Drinks;
 using BleakwindBuffet.Data.Enums;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 {
     public class WarriorWaterTests
     {
+        [Fact]
+        public void ShouldBeAssignableFromINotifyPropertyChangedInterface()
+        {
+            WarriorWater WW = new WarriorWater();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(WW);
+        }
+
         [Fact]
         public void ShouldBeAssignableFromIOrderItemInterface()
         {
@@ -132,6 +140,27 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             WarriorWater WW = new WarriorWater();
             WW.Size = size;
             Assert.Equal(name, WW.ToString());
+        }
+
+        [Fact]
+        public void ShouldNotifyIfIceChanges()
+        {
+            WarriorWater WW = new WarriorWater();
+            Assert.PropertyChanged(WW, "Ice", () => WW.Ice = false);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfLemonChanges()
+        {
+            WarriorWater WW = new WarriorWater();
+            Assert.PropertyChanged(WW, "Lemon", () => WW.Lemon = true);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfSizeChanges()
+        {
+            WarriorWater WW = new WarriorWater();
+            Assert.PropertyChanged(WW, "Size", () => WW.Size = Size.Large);
         }
     }
 }

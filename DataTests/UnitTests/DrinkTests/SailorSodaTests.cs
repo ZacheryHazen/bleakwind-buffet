@@ -10,11 +10,19 @@ using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Drinks;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 {
     public class SailorSodaTests
     {
+        [Fact]
+        public void ShouldBeAssignableFromINotifyPropertyChangedInterface()
+        {
+            SailorSoda SS = new SailorSoda();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(SS);
+        }
+
         [Fact]
         public void ShouldBeAssignableFromIOrderItemInterface()
         {
@@ -157,6 +165,27 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             SS.Size = size;
 
             Assert.Equal(name, SS.ToString());
+        }
+
+        [Fact]
+        public void ShouldNotifyIfIceChanges()
+        {
+            SailorSoda SS = new SailorSoda();
+            Assert.PropertyChanged(SS, "Ice", () => SS.Ice = false);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfSizeChanges()
+        {
+            SailorSoda SS = new SailorSoda();
+            Assert.PropertyChanged(SS, "Size", () => SS.Size = Size.Large);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfFlavorChanges()
+        {
+            SailorSoda SS = new SailorSoda();
+            Assert.PropertyChanged(SS, "Flavor", () => SS.Flavor = SodaFlavor.Blackberry);
         }
     }
 }

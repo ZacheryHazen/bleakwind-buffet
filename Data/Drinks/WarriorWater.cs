@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
 
@@ -13,8 +14,9 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Class used to represent the Warrior Water drink via various fields and methods.
     /// </summary>
-    public class WarriorWater : Drink, IOrderItem
+    public class WarriorWater : Drink, IOrderItem, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         // Declaring private backing variables
         private bool ice = true;
 
@@ -38,6 +40,7 @@ namespace BleakwindBuffet.Data.Drinks
                     SpecialInstructions.Add("Hold ice");
                 }
                 ice = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
             }
         }
         /// <summary>
@@ -56,6 +59,7 @@ namespace BleakwindBuffet.Data.Drinks
                     SpecialInstructions.Add("Add lemon");
                 }
                 lemon = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Lemon"));
             }
         }
         /// <summary>
@@ -69,6 +73,7 @@ namespace BleakwindBuffet.Data.Drinks
             set 
             {
                 size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
             } 
         }
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 /*
@@ -12,8 +13,9 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class used to represent the Thugs T-Bone entree via various fields and methods.
     /// </summary>
-    public class ThugsTBone : Entree, IOrderItem
+    public class ThugsTBone : Entree, IOrderItem, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// The price of the Thugs T-Bone
         /// </summary>

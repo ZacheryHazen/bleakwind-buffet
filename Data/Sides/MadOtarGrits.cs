@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
+using System.ComponentModel;
 
 /*
  * Author: Zach Hazen
@@ -13,8 +14,9 @@ namespace BleakwindBuffet.Data.Sides
     /// <summary>
     /// Class used to represent the Mad Otar Grits side via various fields and methods.
     /// </summary>
-    public class MadOtarGrits : Side, IOrderItem
+    public class MadOtarGrits : Side, IOrderItem, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         // Declaring the private backing variable
         private Size size = Size.Small;
 
@@ -30,6 +32,7 @@ namespace BleakwindBuffet.Data.Sides
             set
             {
                 size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
             }
         }
 

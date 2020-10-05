@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 /*
@@ -12,8 +13,9 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class used to represent the Garden Orc Omelette entree via various fields and methods
     /// </summary>
-    public class GardenOrcOmelette : Entree, IOrderItem
+    public class GardenOrcOmelette : Entree, IOrderItem, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         // Declaring private backing variables
         private bool broccoli = true;
 
@@ -40,6 +42,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold broccoli");
                 }
                 broccoli = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Broccoli"));
             }
         }
 
@@ -60,6 +63,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold mushrooms");
                 }
                 mushrooms = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mushrooms"));
             }
         }
 
@@ -80,6 +84,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold tomato");
                 }
                 tomato = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tomato"));
             }
         }
 
@@ -100,6 +105,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold cheddar");
                 }
                 cheddar = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheddar"));
             }
         }
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 /*
  * Author: Zach Hazen
@@ -12,8 +13,9 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class used to represent the Smokehouse Skeleton entree via various fields and methods.
     /// </summary>
-    public class SmokehouseSkeleton : Entree, IOrderItem
+    public class SmokehouseSkeleton : Entree, IOrderItem, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         // Declaring the private backing variables
         private bool sausageLink = true;
 
@@ -40,6 +42,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold sausage");
                 }
                 sausageLink = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SausageLink"));
             }
         }
 
@@ -60,6 +63,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold eggs");
                 }
                 egg = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Egg"));
             }
         }
 
@@ -80,6 +84,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold hashbrowns");
                 }
                 hashbrowns = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HashBrowns"));
             }
         }
 
@@ -100,6 +105,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold pancake");
                 }
                 pancake = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pancake"));
             }
         }
         /// <summary>

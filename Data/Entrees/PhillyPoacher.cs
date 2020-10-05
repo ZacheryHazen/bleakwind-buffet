@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 /*
  * Author: Zach Hazen
@@ -13,8 +14,11 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class used to represent the Philly Poacher entree via various fields and methods.
     /// </summary>
-    public class PhillyPoacher : Entree, IOrderItem
+    public class PhillyPoacher : Entree, IOrderItem, INotifyPropertyChanged
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         // Declaring the private backing variables
         private bool sirloin = true;
 
@@ -39,6 +43,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold sirloin");
                 }
                 sirloin = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Sirloin"));
             }
         }
 
@@ -59,6 +64,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold onions");
                 }
                 onion = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Onion"));
             }
         }
 
@@ -79,6 +85,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold roll");
                 }
                 roll = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Roll"));
             }
         }
 

@@ -7,11 +7,19 @@ using Xunit;
 
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
+using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
     public class BriarheartBurgerTests
     {
+        [Fact]
+        public void ShouldBeAssignableFromINotifyPropertyChangedInterface()
+        {
+            BriarheartBurger BB = new BriarheartBurger();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(BB);
+        }
         [Fact]
         public void ShouldBeAssignableFromIOrderItemInterface()
         {
@@ -152,6 +160,41 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         {
             BriarheartBurger BB = new BriarheartBurger();
             Assert.Equal("Briarheart Burger", BB.ToString());
+        }
+
+        [Fact]
+        public void ShouldNotifyIfBunChanges()
+        {
+            BriarheartBurger BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, "Bun", () => BB.Bun = false);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfKetchupChanges()
+        {
+            BriarheartBurger BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, "Ketchup", () => BB.Ketchup = false);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfMustardChanges()
+        {
+            BriarheartBurger BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, "Mustard", () => BB.Mustard = false);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfPickleChanges()
+        {
+            BriarheartBurger BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, "Pickle", () => BB.Pickle = false);
+        }
+
+        [Fact]
+        public void ShouldNotifyIfCheeseChanges()
+        {
+            BriarheartBurger BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, "Cheese", () => BB.Cheese = false);
         }
     }
 }

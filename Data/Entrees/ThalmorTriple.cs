@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 /*
@@ -12,8 +13,9 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class used to represent the Thalmor Triple entree via various fields and methods.
     /// </summary>
-    public class ThalmorTriple : Entree, IOrderItem
+    public class ThalmorTriple : Entree, IOrderItem, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         // Declaring the private backing variables
         private bool bun = true;
 
@@ -51,6 +53,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold bun");
                 }
                 bun = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bun"));
             }
         }
 
@@ -71,6 +74,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold ketchup");
                 }
                 ketchup = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ketchup"));
             }
         }
 
@@ -91,6 +95,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold mustard");
                 }
                 mustard = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mustard"));
             }
         }
 
@@ -111,6 +116,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold pickle");
                 }
                 pickle = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pickle"));
             }
         }
 
@@ -131,6 +137,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold cheese");
                 }
                 cheese = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheese"));
             }
         }
 
@@ -151,6 +158,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold tomato");
                 }
                 tomato = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tomato"));
             }
         }
 
@@ -171,6 +179,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold lettuce");
                 }
                 lettuce = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Lettuce"));
             }
         }
 
@@ -191,6 +200,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold mayo");
                 }
                 mayo = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mayo"));
             }
         }
 
@@ -211,6 +221,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold bacon");
                 }
                 bacon = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bacon"));
             }
         }
 
@@ -231,6 +242,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold egg");
                 }
                 egg = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Egg"));
             }
         }
 

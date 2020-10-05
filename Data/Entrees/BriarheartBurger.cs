@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Dynamic;
 using System.Text;
 
@@ -13,8 +14,9 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class used to represent the Briarheart Burger entree via various fields and methods.
     /// </summary>
-    public class BriarheartBurger : Entree, IOrderItem
+    public class BriarheartBurger : Entree, IOrderItem, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         // Declaring private backing variables
         private bool bun = true;
 
@@ -43,6 +45,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold bun");
                 }
                 bun = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bun"));
             }
         }
 
@@ -63,6 +66,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold ketchup");
                 }
                 ketchup = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ketchup"));
             }
         }
 
@@ -83,6 +87,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold mustard");
                 }
                 mustard = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mustard"));
             }
         }
 
@@ -103,6 +108,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold pickle");
                 }
                 pickle = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pickle"));
             }
         }
 
@@ -123,6 +129,7 @@ namespace BleakwindBuffet.Data.Entrees
                     SpecialInstructions.Add("Hold cheese");
                 }
                 cheese = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheese"));
             }
         }
         /// <summary>

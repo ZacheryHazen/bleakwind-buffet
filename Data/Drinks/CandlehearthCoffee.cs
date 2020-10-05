@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
 
@@ -13,8 +14,9 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Class used to represent the Candlehearth Coffee drink via various fields and methods.
     /// </summary>
-    public class CandlehearthCoffee : Drink, IOrderItem
+    public class CandlehearthCoffee : Drink, IOrderItem, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         // Declaring backing variables
         private bool ice = false;
 
@@ -40,6 +42,7 @@ namespace BleakwindBuffet.Data.Drinks
                     SpecialInstructions.Add("Add ice");
                 }
                 ice = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
             }
         }
 
@@ -55,6 +58,7 @@ namespace BleakwindBuffet.Data.Drinks
             set
             {
                 decaf = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Decaf"));
             }
         }
 
@@ -74,6 +78,7 @@ namespace BleakwindBuffet.Data.Drinks
                 {
                     SpecialInstructions.Add("Leave room for cream");
                 }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RoomForCream"));
             }
         }
 
@@ -89,6 +94,7 @@ namespace BleakwindBuffet.Data.Drinks
             set
             {
                 size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
             }
         }
 
