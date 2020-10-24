@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data
@@ -15,6 +16,8 @@ namespace BleakwindBuffet.Data
     /// </summary>
     public abstract class Entree
     {
+        // PropertyChanged event handler to be invoked when changing any of the descendant's properties.
+        public abstract event PropertyChangedEventHandler PropertyChanged;
         // Double to hold the price of the entree.
         public abstract double Price { get; }
         // Unsigned integer to hold the calories of the entree.

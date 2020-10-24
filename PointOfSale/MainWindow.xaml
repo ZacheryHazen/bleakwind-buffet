@@ -12,6 +12,7 @@
         Title="Bleakwind Buffet Point of Sale" Height="450" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".05*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition />
             <ColumnDefinition Width=".05*"/>
@@ -21,7 +22,7 @@
             <RowDefinition Height="20*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border Name="menuSelectionBorder" Grid.Row="1"/>
-        <Border Name="orderComponentBorder" Grid.Row="1" Grid.Column="1"/>
+        <Border Name="menuSelectionBorder" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <Border Name="orderComponentBorder" Grid.Row="1" Grid.Column="2"/>
     </Grid>
 </Window>

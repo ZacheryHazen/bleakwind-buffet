@@ -7,13 +7,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.Data
 {
     /// <summary>
     /// Interface used in all entrees, drinks, and sides to provide baseline fields.
     /// </summary>
-    public interface IOrderItem
+    public interface IOrderItem : INotifyPropertyChanged
     {
         // Double to hold the price of the entree, side, or drink.
         double Price { get; }

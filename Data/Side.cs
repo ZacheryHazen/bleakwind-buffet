@@ -4,10 +4,10 @@
  * Purpose: Abstract class to be implemented by all side items in the Bleakwind Buffet.
  */
 
-
 using BleakwindBuffet.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data
@@ -17,6 +17,8 @@ namespace BleakwindBuffet.Data
     /// </summary>
     public abstract class Side
     {
+        // PropertyChanged event handler to be invoked when changing any of the descendant's properties.
+        public abstract event PropertyChangedEventHandler PropertyChanged;
         // Size enum that holds the size of a side.
         public abstract Size Size { get; set; }
         // Double to hold the price of a side.

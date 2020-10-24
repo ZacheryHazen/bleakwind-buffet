@@ -14,9 +14,12 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Class used to represent the Markarth Milk drink via various fields and methods.
     /// </summary>
-    public class MarkarthMilk : Drink, IOrderItem, INotifyPropertyChanged
+    public class MarkarthMilk : Drink, IOrderItem
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// The event handler to be used when a specific property changes in the object.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
         // Declaring private backing variables
         private bool ice = false;
 
@@ -36,6 +39,12 @@ namespace BleakwindBuffet.Data.Drinks
                 if (value == true)
                 {
                     SpecialInstructions.Add("Add ice");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Add ice");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 ice = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
@@ -52,7 +61,11 @@ namespace BleakwindBuffet.Data.Drinks
             set
             {
                 size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
             }
         }
         /// <summary>
@@ -101,6 +114,17 @@ namespace BleakwindBuffet.Data.Drinks
         /// A list of special instructions for preparing the milk
         /// </summary>
         public override List<string> SpecialInstructions { get; } = new List<string>();
+
+        /// <summary>
+        /// Simply holds the value of the ToString() method in a string.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return ToString();
+            }
+        }
 
         /// <summary>
         /// Returns a description of the milk to be served.

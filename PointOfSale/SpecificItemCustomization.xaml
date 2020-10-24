@@ -16,15 +16,13 @@
             <RowDefinition Height="5*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Name="customizeTitleTextBlock" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center">
-            Customize Item:
-        </TextBlock>
+        <TextBlock Name="customizeTitleTextBlock" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" Text="{Binding Path=Name, StringFormat=Customize Item: {0}}"/>
 
         <StackPanel Name="customizationsStack" Grid.Row="1" />
 
-        <Border Grid.Row="2" HorizontalAlignment="Center" Width="100" Padding="7">
-            <Button Click="ExitWindow">
-                Done
+        <Border Grid.Row="2" HorizontalAlignment="Center" Width="150" Padding="7">
+            <Button Name="buttonExit" Click="ExitWindow">
+                Add to Order
             </Button>
         </Border>
     </Grid>

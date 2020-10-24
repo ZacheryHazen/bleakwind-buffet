@@ -13,9 +13,12 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class used to represent the Garden Orc Omelette entree via various fields and methods
     /// </summary>
-    public class GardenOrcOmelette : Entree, IOrderItem, INotifyPropertyChanged
+    public class GardenOrcOmelette : Entree, IOrderItem
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// The event handler to be used when a specific property changes in the object.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
         // Declaring private backing variables
         private bool broccoli = true;
 
@@ -40,6 +43,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold broccoli");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold broccoli");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 broccoli = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Broccoli"));
@@ -61,6 +70,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold mushrooms");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold mushrooms");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 mushrooms = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mushrooms"));
@@ -82,6 +97,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold tomato");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold tomato");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 tomato = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tomato"));
@@ -103,6 +124,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold cheddar");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold cheddar");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 cheddar = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheddar"));
@@ -122,6 +149,17 @@ namespace BleakwindBuffet.Data.Entrees
         /// A list of special instructions to be used when preparing the Garden Orc Omelette
         /// </summary>
         public override List<string> SpecialInstructions { get; } = new List<string>();
+
+        /// <summary>
+        /// Simply holds the value of the ToString() method in a string.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return ToString();
+            }
+        }
 
         /// <summary>
         /// Returns a description of the Garden Orc Omelette

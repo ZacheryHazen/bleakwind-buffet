@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using BleakwindBuffet.Data.Enums;
 
@@ -16,6 +17,8 @@ namespace BleakwindBuffet.Data
     /// </summary>
     public abstract class Drink
     {
+        // PropertyChanged event handler to be invoked when changing any of the descendant's properties.
+        public abstract event PropertyChangedEventHandler PropertyChanged;
         // Size enum that holds the size of a drink.
         public abstract Size Size { get; set; }
         // Double holding the price of a drink.

@@ -1,6 +1,6 @@
 ﻿<!-- Name: Zachery Hazen
      Class: OrderComponent.xaml
-     Purpose: Displays ordered items in a ListView. ALlows users to proceed to checkout or cancel their order.
+     Purpose: Displays ordered items in a ListView. Allows users to proceed to checkout, cancel their order, modify a specific item, or delete a specific item.
 -->
 <UserControl x:Class="PointOfSale.OrderComponent"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -9,20 +9,46 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PointOfSale"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="200">
+             d:DesignHeight="450" d:DesignWidth="240">
+    
     <DockPanel>
-        <TextBlock DockPanel.Dock="Top" FontWeight="Bold" FontSize="20">
-            Items for Order:
-        </TextBlock>
-
-        <Button DockPanel.Dock="Bottom">
+        <TextBlock DockPanel.Dock="Top" FontWeight="Bold" FontSize="15" Text="{Binding Path=Number, StringFormat=Order {0}:}" Height="20"/>
+        <Button Name="buttonCheckout" DockPanel.Dock="Bottom">
             Move to Checkout
         </Button>
-        <Button DockPanel.Dock="Bottom">
+        <Button Name="buttonCancel" Click="ClearOrder" DockPanel.Dock="Bottom">
             Cancel Order
         </Button>
-        <TextBlock DockPanel.Dock="Bottom" Name="totalsTextBlock" Height="20"/>
         
-        <ListView Name="itemsListView"/>
+        <!-- All of the bottom TextBlocks - suubtotal, tax, and total. -->
+        <TextBlock DockPanel.Dock="Bottom" Name="totalTextBlock" Text="{Binding Path=Total, StringFormat=Total: {0:C}}"/>
+        <TextBlock DockPanel.Dock="Bottom" Name="taxTextBlock" Text="{Binding Path=Tax, StringFormat=Tax: {0:C}}"/>
+        <TextBlock DockPanel.Dock="Bottom" Name="subTotalTextBlock" Text="{Binding Path=Subtotal, StringFormat=Subtotal: {0:C}}"/>
+
+        <ListBox Name="itemsListBox" ItemsSource="{Binding}" SelectionChanged="ModifyItem" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Center" MinWidth="240">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="Center" >
+                        <!-- Handles the name and price of the item -->
+                        <DockPanel>
+                            <TextBlock DockPanel.Dock="Left" Text="{Binding Path=Name}" MinWidth="200"/>
+                            <TextBlock DockPanel.Dock="Right" Text="{Binding Path=Price, StringFormat={}{0:C}}" TextAlignment="Right" Width="28" MaxWidth="28"/>
+                        </DockPanel>
+                        <!-- Handles the SpecialInstructions for each item.-->
+                        <ListBox Name="instructionsListBox" ItemsSource="{Binding Path=SpecialInstructions}" IsEnabled="False">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <!-- Obviously the remove button for each item.-->
+                        <Button Click="RemoveItem">
+                            Remove From Order
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </DockPanel>
 </UserControl>

@@ -24,7 +24,13 @@ namespace PointOfSale
     /// </summary>
     public partial class MenuSelectionComponent : UserControl
     {
+        /// <summary>
+        /// The name of the order item chosen.
+        /// </summary>
         public string orderChoiceName;
+        /// <summary>
+        /// The MainWindow object this window is usually contained in.
+        /// </summary>
         public MainWindow parentScreen;
         
         /// <summary>
@@ -46,7 +52,7 @@ namespace PointOfSale
         public void OrderChoiceSelected(object sender, RoutedEventArgs e)
         {
             orderChoiceName = ((TextBlock)((Button)sender).Content).Text;
-            parentScreen.OpenCustomizeOptions(orderChoiceName);
+            parentScreen.OpenNewCustomizeOptions(orderChoiceName);
         }
     }
 }

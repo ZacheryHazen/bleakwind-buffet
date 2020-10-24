@@ -13,9 +13,12 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class used to represent the Thalmor Triple entree via various fields and methods.
     /// </summary>
-    public class ThalmorTriple : Entree, IOrderItem, INotifyPropertyChanged
+    public class ThalmorTriple : Entree, IOrderItem
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// The event handler to be used when a specific property changes in the object.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
         // Declaring the private backing variables
         private bool bun = true;
 
@@ -51,6 +54,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold bun");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold bun");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 bun = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bun"));
@@ -72,6 +81,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold ketchup");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold ketchup");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 ketchup = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ketchup"));
@@ -93,6 +108,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold mustard");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold mustard");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 mustard = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mustard"));
@@ -114,6 +135,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold pickle");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold pickle");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 pickle = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pickle"));
@@ -135,6 +162,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold cheese");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold cheese");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 cheese = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheese"));
@@ -156,6 +189,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold tomato");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold tomato");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 tomato = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tomato"));
@@ -177,6 +216,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold lettuce");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold lettuce");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 lettuce = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Lettuce"));
@@ -198,6 +243,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold mayo");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold mayo");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 mayo = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mayo"));
@@ -219,6 +270,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold bacon");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold bacon");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 bacon = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bacon"));
@@ -240,6 +297,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold egg");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold egg");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 egg = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Egg"));
@@ -260,6 +323,17 @@ namespace BleakwindBuffet.Data.Entrees
         /// A list of special instructions to be used when preparing the Thalmor Triple
         /// </summary>
         public override List<string> SpecialInstructions { get; } = new List<string>();
+
+        /// <summary>
+        /// Simply holds the value of the ToString() method in a string.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return ToString();
+            }
+        }
 
         /// <summary>
         /// Returns a description of the Thalmor Triple

@@ -13,9 +13,12 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class used to represent the Thugs T-Bone entree via various fields and methods.
     /// </summary>
-    public class ThugsTBone : Entree, IOrderItem, INotifyPropertyChanged
+    public class ThugsTBone : Entree, IOrderItem
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// The event handler to be used when a specific property changes in the object.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// The price of the Thugs T-Bone
         /// </summary>
@@ -30,6 +33,17 @@ namespace BleakwindBuffet.Data.Entrees
         /// A list of special instructions to be used when preparing the Thugs T-Bone
         /// </summary>
         public override List<string> SpecialInstructions { get; } = new List<string>();
+
+        /// <summary>
+        /// Simply holds the value of the ToString() method in a string.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return ToString();
+            }
+        }
 
         /// <summary>
         /// Returns a description of the Thugs T-Bone

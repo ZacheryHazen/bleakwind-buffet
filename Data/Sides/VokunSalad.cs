@@ -14,9 +14,12 @@ namespace BleakwindBuffet.Data.Sides
     /// <summary>
     /// Class used to represent the Vokar Salad side via various fields and methods.
     /// </summary>
-    public class VokunSalad : Side, IOrderItem, INotifyPropertyChanged
+    public class VokunSalad : Side, IOrderItem
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// The event handler to be used when a specific property changes in the object.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
         // Declaring the private backing variable
         private Size size = Size.Small;
 
@@ -32,7 +35,10 @@ namespace BleakwindBuffet.Data.Sides
             set
             {
                 size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
             }
         }
 
@@ -83,6 +89,17 @@ namespace BleakwindBuffet.Data.Sides
         /// A list of special instructions to be used when preparing the Vokun Salad
         /// </summary>
         public override List<string> SpecialInstructions { get; } = new List<string>();
+
+        /// <summary>
+        /// Simply holds the value of the ToString() method in a string.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return ToString();
+            }
+        }
 
         /// <summary>
         /// Returns a description of the Vokun Salad

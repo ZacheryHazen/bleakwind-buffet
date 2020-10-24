@@ -14,10 +14,12 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Class used to represent the Philly Poacher entree via various fields and methods.
     /// </summary>
-    public class PhillyPoacher : Entree, IOrderItem, INotifyPropertyChanged
+    public class PhillyPoacher : Entree, IOrderItem
     {
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// The event handler to be used when a specific property changes in the object.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
 
         // Declaring the private backing variables
         private bool sirloin = true;
@@ -41,6 +43,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold sirloin");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold sirloin");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 sirloin = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Sirloin"));
@@ -62,6 +70,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold onions");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold onions");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 onion = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Onion"));
@@ -83,6 +97,12 @@ namespace BleakwindBuffet.Data.Entrees
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold roll");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold roll");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 roll = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Roll"));
@@ -103,6 +123,17 @@ namespace BleakwindBuffet.Data.Entrees
         /// A list of special instructions to be used when preparing the Philly Poacher
         /// </summary>
         public override List<string> SpecialInstructions { get; } = new List<string>();
+
+        /// <summary>
+        /// Simply holds the value of the ToString() method in a string.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return ToString();
+            }
+        }
 
         /// <summary>
         /// Returns a description of the Philly Poacher

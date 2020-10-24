@@ -14,9 +14,12 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Class used to represent the Warrior Water drink via various fields and methods.
     /// </summary>
-    public class WarriorWater : Drink, IOrderItem, INotifyPropertyChanged
+    public class WarriorWater : Drink, IOrderItem
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// The event handler to be used when a specific property changes in the object.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
         // Declaring private backing variables
         private bool ice = true;
 
@@ -38,6 +41,12 @@ namespace BleakwindBuffet.Data.Drinks
                 if (value == false)
                 {
                     SpecialInstructions.Add("Hold ice");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Hold ice");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 ice = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
@@ -57,6 +66,12 @@ namespace BleakwindBuffet.Data.Drinks
                 if (value == true)
                 {
                     SpecialInstructions.Add("Add lemon");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
+                else
+                {
+                    SpecialInstructions.Remove("Add lemon");
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
                 }
                 lemon = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Lemon"));
@@ -73,7 +88,11 @@ namespace BleakwindBuffet.Data.Drinks
             set 
             {
                 size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
             } 
         }
         /// <summary>
@@ -122,6 +141,17 @@ namespace BleakwindBuffet.Data.Drinks
         /// A list of special instructions for preparing the water
         /// </summary>
         public override List<string> SpecialInstructions { get; } = new List<string>();
+
+        /// <summary>
+        /// Simply holds the value of the ToString() method in a string.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return ToString();
+            }
+        }
 
         /// <summary>
         /// Returns a description of the water
