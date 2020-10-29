@@ -142,25 +142,55 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.Equal(name, WW.ToString());
         }
 
-        [Fact]
-        public void ShouldNotifyIfIceChanges()
+        [Theory]
+        [InlineData("Ice")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfIceChanges(string propertyChanged)
         {
             WarriorWater WW = new WarriorWater();
-            Assert.PropertyChanged(WW, "Ice", () => WW.Ice = false);
+            Assert.PropertyChanged(WW, propertyChanged, () => WW.Ice = false);
+        }
+
+        [Theory]
+        [InlineData("Lemon")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfLemonChanges(string propertyChanged)
+        {
+            WarriorWater WW = new WarriorWater();
+            Assert.PropertyChanged(WW, propertyChanged, () => WW.Lemon = true);
+        }
+
+        [Theory]
+        [InlineData("Size")]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        [InlineData("Name")]
+        public void ShouldNotifyIfSizeChanges(string propertyChanged)
+        {
+            WarriorWater WW = new WarriorWater();
+            Assert.PropertyChanged(WW, propertyChanged, () => WW.Size = Size.Large);
         }
 
         [Fact]
-        public void ShouldNotifyIfLemonChanges()
+        public void ShouldRemoveItemsFromSpecialInstructions()
         {
             WarriorWater WW = new WarriorWater();
-            Assert.PropertyChanged(WW, "Lemon", () => WW.Lemon = true);
+            WW.Ice = false;
+            WW.Ice = true;
+            WW.Lemon = true;
+            WW.Lemon = false;
+            Assert.Empty(WW.SpecialInstructions);
         }
 
-        [Fact]
-        public void ShouldNotifyIfSizeChanges()
+        [Theory]
+        [InlineData(Size.Small, "Small Warrior Water")]
+        [InlineData(Size.Medium, "Medium Warrior Water")]
+        [InlineData(Size.Large, "Large Warrior Water")]
+        public void ShouldReturnCorrectNameBasedOnToString(Size size, string name)
         {
             WarriorWater WW = new WarriorWater();
-            Assert.PropertyChanged(WW, "Size", () => WW.Size = Size.Large);
+            WW.Size = size;
+            Assert.Equal(name, WW.Name);
         }
     }
 }

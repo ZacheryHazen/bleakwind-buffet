@@ -94,11 +94,26 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             Assert.Equal(name, DWF.ToString());
         }
 
-        [Fact]
-        public void ShouldNotifyIfSizeChanges()
+        [Theory]
+        [InlineData("Size")]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        [InlineData("Name")]
+        public void ShouldNotifyIfSizeChanges(string propertyChanged)
         {
             DragonbornWaffleFries DWF = new DragonbornWaffleFries();
-            Assert.PropertyChanged(DWF, "Size", () => DWF.Size = Size.Large);
+            Assert.PropertyChanged(DWF, propertyChanged, () => DWF.Size = Size.Large);
+        }
+
+        [Theory]
+        [InlineData(Size.Small, "Small Dragonborn Waffle Fries")]
+        [InlineData(Size.Medium, "Medium Dragonborn Waffle Fries")]
+        [InlineData(Size.Large, "Large Dragonborn Waffle Fries")]
+        public void ShouldReturnCorrectNameBasedOnToString(Size size, string name)
+        {
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            DWF.Size = size;
+            Assert.Equal(name, DWF.Name);
         }
     }
 }

@@ -260,60 +260,128 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.Equal("Thalmor Triple", TT.ToString());
         }
 
-        [Fact]
-        public void ShouldNotifyIfBunChanges()
+        [Theory]
+        [InlineData("Bun")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfBunChanges(string propertyChanged)
         {
             ThalmorTriple TT = new ThalmorTriple();
-            Assert.PropertyChanged(TT, "Bun", () => TT.Bun = false);
+            Assert.PropertyChanged(TT, propertyChanged, () => TT.Bun = false);
+        }
+
+        [Theory]
+        [InlineData("Ketchup")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfKetchupChanges(string propertyChanged)
+        {
+            ThalmorTriple TT = new ThalmorTriple();
+            Assert.PropertyChanged(TT, propertyChanged, () => TT.Ketchup = false);
+        }
+
+        [Theory]
+        [InlineData("Mustard")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfMustardChanges(string propertyChanged)
+        {
+            ThalmorTriple TT = new ThalmorTriple();
+            Assert.PropertyChanged(TT, propertyChanged, () => TT.Mustard = false);
+        }
+
+        [Theory]
+        [InlineData("Pickle")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfPickleChanges(string propertyChanged)
+        {
+            ThalmorTriple TT = new ThalmorTriple();
+            Assert.PropertyChanged(TT, propertyChanged, () => TT.Pickle = false);
+        }
+
+        [Theory]
+        [InlineData("Cheese")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfCheeseChanges(string propertyChanged)
+        {
+            ThalmorTriple TT = new ThalmorTriple();
+            Assert.PropertyChanged(TT, propertyChanged, () => TT.Cheese = false);
+        }
+
+        [Theory]
+        [InlineData("Tomato")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfTomatoChanges(string propertyChanged)
+        {
+            ThalmorTriple TT = new ThalmorTriple();
+            Assert.PropertyChanged(TT, propertyChanged, () => TT.Tomato = false);
+        }
+
+        [Theory]
+        [InlineData("Lettuce")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfLettuceChanges(string propertyChanged)
+        {
+            ThalmorTriple TT = new ThalmorTriple();
+            Assert.PropertyChanged(TT, propertyChanged, () => TT.Lettuce = false);
+        }
+
+        [Theory]
+        [InlineData("Mayo")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfMayoChanges(string propertyChanged)
+        {
+            ThalmorTriple TT = new ThalmorTriple();
+            Assert.PropertyChanged(TT, propertyChanged, () => TT.Mayo = false);
+        }
+
+        [Theory]
+        [InlineData("Bacon")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfBaconChanges(string propertyChanged)
+        {
+            ThalmorTriple TT = new ThalmorTriple();
+            Assert.PropertyChanged(TT, propertyChanged, () => TT.Bacon = false);
+        }
+
+        [Theory]
+        [InlineData("Egg")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfEggChanges(string propertyChanged)
+        {
+            ThalmorTriple TT = new ThalmorTriple();
+            Assert.PropertyChanged(TT, propertyChanged, () => TT.Egg = false);
         }
 
         [Fact]
-        public void ShouldNotifyIfKetchupChanges()
+        public void ShouldRemoveItemsFromSpecialInstructions()
         {
             ThalmorTriple TT = new ThalmorTriple();
-            Assert.PropertyChanged(TT, "Ketchup", () => TT.Ketchup = false);
+            TT.Bun = false;
+            TT.Ketchup = false;
+            TT.Mustard = false;
+            TT.Pickle = false;
+            TT.Cheese = false;
+            TT.Tomato = false;
+            TT.Lettuce = false;
+            TT.Mayo = false;
+            TT.Bacon = false;
+            TT.Egg = false;
+            TT.Bun = true;
+            TT.Ketchup = true;
+            TT.Mustard = true;
+            TT.Pickle = true;
+            TT.Cheese = true;
+            TT.Tomato = true;
+            TT.Lettuce = true;
+            TT.Mayo = true;
+            TT.Bacon = true;
+            TT.Egg = true;
+            Assert.Empty(TT.SpecialInstructions);
         }
 
         [Fact]
-        public void ShouldNotifyIfMustardChanges()
+        public void ShouldReturnCorrectNameBasedOnToString()
         {
             ThalmorTriple TT = new ThalmorTriple();
-            Assert.PropertyChanged(TT, "Mustard", () => TT.Mustard = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfPickleChanges()
-        {
-            ThalmorTriple TT = new ThalmorTriple();
-            Assert.PropertyChanged(TT, "Pickle", () => TT.Pickle = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfCheeseChanges()
-        {
-            ThalmorTriple TT = new ThalmorTriple();
-            Assert.PropertyChanged(TT, "Cheese", () => TT.Cheese = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfTomatoChanges()
-        {
-            ThalmorTriple TT = new ThalmorTriple();
-            Assert.PropertyChanged(TT, "Tomato", () => TT.Tomato = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfLettuceChanges()
-        {
-            ThalmorTriple TT = new ThalmorTriple();
-            Assert.PropertyChanged(TT, "Lettuce", () => TT.Lettuce = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfMayoChanges()
-        {
-            ThalmorTriple TT = new ThalmorTriple();
-            Assert.PropertyChanged(TT, "Mayo", () => TT.Mayo = false);
+            Assert.Equal("Thalmor Triple", TT.Name);
         }
     }
 }

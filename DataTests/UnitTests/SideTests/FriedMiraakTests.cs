@@ -94,11 +94,26 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             Assert.Equal(name, FM.ToString());
         }
 
-        [Fact]
-        public void ShouldNotifyIfSizeChanges()
+        [Theory]
+        [InlineData("Size")]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        [InlineData("Name")]
+        public void ShouldNotifyIfSizeChanges(string propertyChanged)
         {
             FriedMiraak FM = new FriedMiraak();
-            Assert.PropertyChanged(FM, "Size", () => FM.Size = Size.Large);
+            Assert.PropertyChanged(FM, propertyChanged, () => FM.Size = Size.Large);
+        }
+
+        [Theory]
+        [InlineData(Size.Small, "Small Fried Miraak")]
+        [InlineData(Size.Medium, "Medium Fried Miraak")]
+        [InlineData(Size.Large, "Large Fried Miraak")]
+        public void ShouldReturnCorrectNameBasedOnToString(Size size, string name)
+        {
+            FriedMiraak FM = new FriedMiraak();
+            FM.Size = size;
+            Assert.Equal(name, FM.Name);
         }
     }
 }

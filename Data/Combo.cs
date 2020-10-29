@@ -15,7 +15,7 @@ namespace BleakwindBuffet.Data
     /// Class used to hold an entree, drink, and side object. Adds corresponding event listeners for each item and invokes the appropriate handler upon one of the item's properties being changed.
     /// Creates many custom fields aggregating the child fields' values. Ex-Price, Calories, SpecialInstructions, etc.
     /// </summary>
-    class Combo : IOrderItem, INotifyPropertyChanged
+    public class Combo : IOrderItem, INotifyPropertyChanged
     {
         /// <summary>
         /// Event handler to be invoked whenever a property changes for an individual item or the Combo as a whole.
@@ -36,6 +36,19 @@ namespace BleakwindBuffet.Data
         /// The private backing Drink variable.
         /// </summary>
         private Drink drink;
+
+        /// <summary>
+        /// Constructor for Combo requiring its three components be initialized first - entree, side, and drink.
+        /// </summary>
+        /// <param name="e">The entree object to be included in the combo.</param>
+        /// <param name="s">The side object to be included in the combo.</param>
+        /// <param name="d">The drink object to be included in the combo.</param>
+        public Combo(Entree e, Side s, Drink d)
+        {
+            entree = e;
+            side = s;
+            drink = d;
+        }
 
         /// <summary>
         /// The Entree variable, interfaces with the private backing variable. Invokes the PropertyChanged event handler with the appropriate EventArgs to notify

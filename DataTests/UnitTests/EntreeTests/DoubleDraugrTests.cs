@@ -221,60 +221,106 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.Equal("Double Draugr", DD.ToString());
         }
 
-        [Fact]
-        public void ShouldNotifyIfBunChanges()
+        [Theory]
+        [InlineData("Bun")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfBunChanges(string propertyChanged)
         {
             DoubleDraugr DD = new DoubleDraugr();
-            Assert.PropertyChanged(DD, "Bun", () => DD.Bun = false);
+            Assert.PropertyChanged(DD, propertyChanged, () => DD.Bun = false);
+        }
+
+        [Theory]
+        [InlineData("Ketchup")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfKetchupChanges(string propertyChanged)
+        {
+            DoubleDraugr DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, propertyChanged, () => DD.Ketchup = false);
+        }
+
+        [Theory]
+        [InlineData("Mustard")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfMustardChanges(string propertyChanged)
+        {
+            DoubleDraugr DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, propertyChanged, () => DD.Mustard = false);
+        }
+
+        [Theory]
+        [InlineData("Pickle")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfPickleChanges(string propertyChanged)
+        {
+            DoubleDraugr DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, propertyChanged, () => DD.Pickle = false);
+        }
+
+        [Theory]
+        [InlineData("Cheese")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfCheeseChanges(string propertyChanged)
+        {
+            DoubleDraugr DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, propertyChanged, () => DD.Cheese = false);
+        }
+
+        [Theory]
+        [InlineData("Tomato")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfTomatoChanges(string propertyChanged)
+        {
+            DoubleDraugr DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, propertyChanged, () => DD.Tomato = false);
+        }
+
+        [Theory]
+        [InlineData("Lettuce")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfLettuceChanges(string propertyChanged)
+        {
+            DoubleDraugr DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, propertyChanged, () => DD.Lettuce = false);
+        }
+
+        [Theory]
+        [InlineData("Mayo")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfMayoChanges(string propertyChanged)
+        {
+            DoubleDraugr DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, propertyChanged, () => DD.Mayo = false);
         }
 
         [Fact]
-        public void ShouldNotifyIfKetchupChanges()
+        public void ShouldRemoveItemsFromSpecialInstructions()
         {
             DoubleDraugr DD = new DoubleDraugr();
-            Assert.PropertyChanged(DD, "Ketchup", () => DD.Ketchup = false);
+            DD.Bun = false;
+            DD.Ketchup = false;
+            DD.Mustard = false;
+            DD.Pickle = false;
+            DD.Cheese = false;
+            DD.Tomato = false;
+            DD.Lettuce = false;
+            DD.Mayo = false;
+            DD.Bun = true;
+            DD.Ketchup = true;
+            DD.Mustard = true;
+            DD.Pickle = true;
+            DD.Cheese = true;
+            DD.Tomato = true;
+            DD.Lettuce = true;
+            DD.Mayo = true;
+            Assert.Empty(DD.SpecialInstructions);
         }
 
         [Fact]
-        public void ShouldNotifyIfMustardChanges()
+        public void ShouldReturnCorrectNameBasedOnToString()
         {
             DoubleDraugr DD = new DoubleDraugr();
-            Assert.PropertyChanged(DD, "Mustard", () => DD.Mustard = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfPickleChanges()
-        {
-            DoubleDraugr DD = new DoubleDraugr();
-            Assert.PropertyChanged(DD, "Pickle", () => DD.Pickle = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfCheeseChanges()
-        {
-            DoubleDraugr DD = new DoubleDraugr();
-            Assert.PropertyChanged(DD, "Cheese", () => DD.Cheese = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfTomatoChanges()
-        {
-            DoubleDraugr DD = new DoubleDraugr();
-            Assert.PropertyChanged(DD, "Tomato", () => DD.Tomato = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfLettuceChanges()
-        {
-            DoubleDraugr DD = new DoubleDraugr();
-            Assert.PropertyChanged(DD, "Lettuce", () => DD.Lettuce = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfMayoChanges()
-        {
-            DoubleDraugr DD = new DoubleDraugr();
-            Assert.PropertyChanged(DD, "Mayo", () => DD.Mayo = false);
+            Assert.Equal("Double Draugr", DD.Name);
         }
     }
 }

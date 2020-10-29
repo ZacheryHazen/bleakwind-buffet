@@ -163,32 +163,68 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             else Assert.Equal(name, CC.ToString());
         }
 
-        [Fact]
-        public void ShouldNotifyIfIceChanges()
+        [Theory]
+        [InlineData("Ice")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfIceChanges(string propertyChanged)
         {
             CandlehearthCoffee CC= new CandlehearthCoffee();
-            Assert.PropertyChanged(CC, "Ice", () => CC.Ice = true);
+            Assert.PropertyChanged(CC, propertyChanged, () => CC.Ice = true);
+        }
+
+        [Theory]
+        [InlineData("Name")]
+        [InlineData("Decaf")]
+        public void ShouldNotifyIfDecafChanges(string propertyChanged)
+        {
+            CandlehearthCoffee CC = new CandlehearthCoffee();
+            Assert.PropertyChanged(CC, propertyChanged, () => CC.Decaf = true);
+        }
+
+        [Theory]
+        [InlineData("RoomForCream")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfRoomForCreamChanges(string propertyChanged)
+        {
+            CandlehearthCoffee CC = new CandlehearthCoffee();
+            Assert.PropertyChanged(CC, propertyChanged, () => CC.RoomForCream = true);
+        }
+
+        [Theory]
+        [InlineData("Size")]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        [InlineData("Name")]
+        public void ShouldNotifyIfSizeChanges(string propertyChanged)
+        {
+            CandlehearthCoffee CC = new CandlehearthCoffee();
+            Assert.PropertyChanged(CC, propertyChanged, () => CC.Size = Size.Large);
         }
 
         [Fact]
-        public void ShouldNotifyIfDecafChanges()
+        public void ShouldRemoveItemsFromSpecialInstructions()
         {
             CandlehearthCoffee CC = new CandlehearthCoffee();
-            Assert.PropertyChanged(CC, "Decaf", () => CC.Decaf = true);
+            CC.Ice = true;
+            CC.Ice = false;
+            CC.RoomForCream = true;
+            CC.RoomForCream = false;
+            Assert.Empty(CC.SpecialInstructions);
         }
 
-        [Fact]
-        public void ShouldNotifyIfRoomForCreamChanges()
+        [Theory]
+        [InlineData(true, Size.Small, "Small Decaf Candlehearth Coffee")]
+        [InlineData(true, Size.Medium, "Medium Decaf Candlehearth Coffee")]
+        [InlineData(true, Size.Large, "Large Decaf Candlehearth Coffee")]
+        [InlineData(false, Size.Small, "Small Candlehearth Coffee")]
+        [InlineData(false, Size.Medium, "Medium Candlehearth Coffee")]
+        [InlineData(false, Size.Large, "Large Candlehearth Coffee")]
+        public void ShouldReturnCorrectNameBasedOnToString(bool decaf, Size size, string Name)
         {
             CandlehearthCoffee CC = new CandlehearthCoffee();
-            Assert.PropertyChanged(CC, "RoomForCream", () => CC.RoomForCream = true);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfSizeChanges()
-        {
-            CandlehearthCoffee CC = new CandlehearthCoffee();
-            Assert.PropertyChanged(CC, "Size", () => CC.Size = Size.Large);
+            CC.Decaf = decaf;
+            CC.Size = size;
+            Assert.Equal(CC.Name, Name);
         }
     }
 }

@@ -162,39 +162,73 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.Equal("Briarheart Burger", BB.ToString());
         }
 
-        [Fact]
-        public void ShouldNotifyIfBunChanges()
+        [Theory]
+        [InlineData("Bun")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfBunChanges(string propertyChanged)
         {
             BriarheartBurger BB = new BriarheartBurger();
-            Assert.PropertyChanged(BB, "Bun", () => BB.Bun = false);
+            Assert.PropertyChanged(BB, propertyChanged, () => BB.Bun = false);
+        }
+
+        [Theory]
+        [InlineData("Ketchup")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfKetchupChanges(string propertyChanged)
+        {
+            BriarheartBurger BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, propertyChanged, () => BB.Ketchup = false);
+        }
+
+        [Theory]
+        [InlineData("Mustard")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfMustardChanges(string propertyChanged)
+        {
+            BriarheartBurger BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, propertyChanged, () => BB.Mustard = false);
+        }
+
+        [Theory]
+        [InlineData("Pickle")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfPickleChanges(string propertyChanged)
+        {
+            BriarheartBurger BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, propertyChanged, () => BB.Pickle = false);
+        }
+
+        [Theory]
+        [InlineData("Cheese")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfCheeseChanges(string propertyChanged)
+        {
+            BriarheartBurger BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, propertyChanged, () => BB.Cheese = false);
         }
 
         [Fact]
-        public void ShouldNotifyIfKetchupChanges()
+        public void ShouldRemoveItemsFromSpecialInstructions()
         {
             BriarheartBurger BB = new BriarheartBurger();
-            Assert.PropertyChanged(BB, "Ketchup", () => BB.Ketchup = false);
+            BB.Bun = false;
+            BB.Ketchup = false;
+            BB.Mustard = false;
+            BB.Pickle = false;
+            BB.Cheese = false;
+            BB.Bun = true;
+            BB.Ketchup = true;
+            BB.Mustard = true;
+            BB.Pickle = true;
+            BB.Cheese = true;
+            Assert.Empty(BB.SpecialInstructions);
         }
 
         [Fact]
-        public void ShouldNotifyIfMustardChanges()
+        public void ShouldReturnCorrectNameBasedOnToString()
         {
             BriarheartBurger BB = new BriarheartBurger();
-            Assert.PropertyChanged(BB, "Mustard", () => BB.Mustard = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfPickleChanges()
-        {
-            BriarheartBurger BB = new BriarheartBurger();
-            Assert.PropertyChanged(BB, "Pickle", () => BB.Pickle = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfCheeseChanges()
-        {
-            BriarheartBurger BB = new BriarheartBurger();
-            Assert.PropertyChanged(BB, "Cheese", () => BB.Cheese = false);
+            Assert.Equal("Briarheart Burger", BB.Name);
         }
     }
 }

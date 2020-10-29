@@ -143,32 +143,62 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.Equal("Garden Orc Omelette", GOO.ToString());
         }
 
-        [Fact]
-        public void ShouldNotifyIfBroccoliChanges()
+        [Theory]
+        [InlineData("Broccoli")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfBroccoliChanges(string propertyChanged)
         {
             GardenOrcOmelette GOO = new GardenOrcOmelette();
-            Assert.PropertyChanged(GOO, "Broccoli", () => GOO.Broccoli = false);
+            Assert.PropertyChanged(GOO, propertyChanged, () => GOO.Broccoli = false);
+        }
+
+        [Theory]
+        [InlineData("Mushrooms")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfMushroomsChanges(string propertyChanged)
+        {
+            GardenOrcOmelette GOO = new GardenOrcOmelette();
+            Assert.PropertyChanged(GOO, propertyChanged, () => GOO.Mushrooms = false);
+        }
+
+        [Theory]
+        [InlineData("Tomato")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfTomatoChanges(string propertyChanged)
+        {
+            GardenOrcOmelette GOO = new GardenOrcOmelette();
+            Assert.PropertyChanged(GOO, propertyChanged, () => GOO.Tomato = false);
+        }
+
+        [Theory]
+        [InlineData("Cheddar")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfCheddarChanges(string propertyChanged)
+        {
+            GardenOrcOmelette GOO = new GardenOrcOmelette();
+            Assert.PropertyChanged(GOO, propertyChanged, () => GOO.Cheddar = false);
         }
 
         [Fact]
-        public void ShouldNotifyIfMushroomsChanges()
+        public void ShouldRemoveItemsFromSpecialInstructions()
         {
             GardenOrcOmelette GOO = new GardenOrcOmelette();
-            Assert.PropertyChanged(GOO, "Mushrooms", () => GOO.Mushrooms = false);
+            GOO.Broccoli = false;
+            GOO.Mushrooms = false;
+            GOO.Tomato = false;
+            GOO.Cheddar = false;
+            GOO.Broccoli = true;
+            GOO.Mushrooms = true;
+            GOO.Tomato = true;
+            GOO.Cheddar = true;
+            Assert.Empty(GOO.SpecialInstructions);
         }
 
         [Fact]
-        public void ShouldNotifyIfTomatoChanges()
+        public void ShouldReturnCorrectNameBasedOnToString()
         {
             GardenOrcOmelette GOO = new GardenOrcOmelette();
-            Assert.PropertyChanged(GOO, "Tomato", () => GOO.Tomato = false);
-        }
-
-        [Fact]
-        public void ShouldNotifyIfCheddarChanges()
-        {
-            GardenOrcOmelette GOO = new GardenOrcOmelette();
-            Assert.PropertyChanged(GOO, "Cheddar", () => GOO.Cheddar = false);
+            Assert.Equal("Garden Orc Omelette", GOO.Name);
         }
     }
 }

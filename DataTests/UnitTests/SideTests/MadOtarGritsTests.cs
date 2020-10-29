@@ -94,11 +94,26 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             Assert.Equal(name, MOG.ToString());
         }
 
-        [Fact]
-        public void ShouldNotifyIfSizeChanges()
+        [Theory]
+        [InlineData("Size")]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        [InlineData("Name")]
+        public void ShouldNotifyIfSizeChanges(string propertyChanged)
         {
             MadOtarGrits MOG = new MadOtarGrits();
-            Assert.PropertyChanged(MOG, "Size", () => MOG.Size = Size.Large);
+            Assert.PropertyChanged(MOG, propertyChanged, () => MOG.Size = Size.Large);
+        }
+
+        [Theory]
+        [InlineData(Size.Small, "Small Mad Otar Grits")]
+        [InlineData(Size.Medium, "Medium Mad Otar Grits")]
+        [InlineData(Size.Large, "Large Mad Otar Grits")]
+        public void ShouldReturnCorrectNameBasedOnToString(Size size, string name)
+        {
+            MadOtarGrits MOG = new MadOtarGrits();
+            MOG.Size = size;
+            Assert.Equal(name, MOG.Name);
         }
     }
 }

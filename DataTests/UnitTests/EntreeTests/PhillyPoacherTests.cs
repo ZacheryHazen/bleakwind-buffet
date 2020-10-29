@@ -125,25 +125,51 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.Equal("Philly Poacher", PP.ToString());
         }
 
-        [Fact]
-        public void ShouldNotifyIfSirloinChanges()
+        [Theory]
+        [InlineData("Sirloin")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfSirloinChanges(string propertyChanged)
         {
             PhillyPoacher PP = new PhillyPoacher();
-            Assert.PropertyChanged(PP, "Sirloin", () => PP.Sirloin = false);
+            Assert.PropertyChanged(PP, propertyChanged, () => PP.Sirloin = false);
+        }
+
+        [Theory]
+        [InlineData("Onion")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfOnionChanges(string propertyChanged)
+        {
+            PhillyPoacher PP = new PhillyPoacher();
+            Assert.PropertyChanged(PP, propertyChanged, () => PP.Onion = false);
+        }
+
+        [Theory]
+        [InlineData("Roll")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfRollChanges(string propertyChanged)
+        {
+            PhillyPoacher PP = new PhillyPoacher();
+            Assert.PropertyChanged(PP, propertyChanged, () => PP.Roll = false);
         }
 
         [Fact]
-        public void ShouldNotifyIfOnionChanges()
+        public void ShouldRemoveItemsFromSpecialInstructions()
         {
             PhillyPoacher PP = new PhillyPoacher();
-            Assert.PropertyChanged(PP, "Onion", () => PP.Onion = false);
+            PP.Sirloin = false;
+            PP.Onion = false;
+            PP.Roll = false;
+            PP.Sirloin = true;
+            PP.Onion = true;
+            PP.Roll = true;
+            Assert.Empty(PP.SpecialInstructions);
         }
 
         [Fact]
-        public void ShouldNotifyIfRollChanges()
+        public void ShouldReturnCorrectNameBasedOnToString()
         {
             PhillyPoacher PP = new PhillyPoacher();
-            Assert.PropertyChanged(PP, "Roll", () => PP.Roll = false);
+            Assert.Equal("Philly Poacher", PP.Name);
         }
     }
 }

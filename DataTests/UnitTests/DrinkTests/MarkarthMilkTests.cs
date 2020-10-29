@@ -119,18 +119,46 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.Equal(name, MM.ToString());
         }
 
-        [Fact]
-        public void ShouldNotifyIfIceChanges()
+        [Theory]
+        [InlineData("Ice")]
+        [InlineData("SpecialInstructions")]
+        public void ShouldNotifyIfIceChanges(string propertyChanged)
         {
             MarkarthMilk MM = new MarkarthMilk();
-            Assert.PropertyChanged(MM, "Ice", () => MM.Ice = false);
+            Assert.PropertyChanged(MM, propertyChanged, () => MM.Ice = false);
+        }
+
+        [Theory]
+        [InlineData("Size")]
+        [InlineData("Price")]
+        [InlineData("Calories")]
+        [InlineData("Name")]
+        public void ShouldNotifyIfSizeChanges(string propertyChanged)
+        {
+            MarkarthMilk MM = new MarkarthMilk();
+            Assert.PropertyChanged(MM, propertyChanged, () => MM.Size = Size.Large);
         }
 
         [Fact]
-        public void ShouldNotifyIfSizeChanges()
+        public void ShouldRemoveItemsFromSpecialInstructions()
         {
             MarkarthMilk MM = new MarkarthMilk();
-            Assert.PropertyChanged(MM, "Size", () => MM.Size = Size.Large);
+            MM.Ice = true;
+            MM.Ice = false;
+            Assert.Empty(MM.SpecialInstructions);
+        }
+
+        [Theory]
+        [InlineData(Size.Small, "Small Markarth Milk")]
+        [InlineData(Size.Medium, "Medium Markarth Milk")]
+        [InlineData(Size.Large, "Large Markarth Milk")]
+        public void ShouldReturnCorrectNameBasedOnToString(Size size, string name)
+        {
+            MarkarthMilk MM = new MarkarthMilk();
+
+            MM.Size = size;
+
+            Assert.Equal(MM.Name, name);
         }
     }
 }

@@ -129,5 +129,32 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             AretinoAppleJuice AAJ = new AretinoAppleJuice();
             Assert.PropertyChanged(AAJ, "Size", () => AAJ.Size = Size.Large);
         }
+
+        [Fact]
+        public void ShouldRemoveItemsFromSpecialInstructions()
+        {
+            AretinoAppleJuice AAJ = new AretinoAppleJuice();
+            AAJ.Ice = true;
+            AAJ.Ice = false;
+            Assert.Empty(AAJ.SpecialInstructions);
+        }
+
+        [Theory]
+        [InlineData(Size.Small, "Small Aretino Apple Juice")]
+        [InlineData(Size.Medium, "Medium Aretino Apple Juice")]
+        [InlineData(Size.Large, "Large Aretino Apple Juice")]
+        public void ShouldReturnCorrectNameBasedOnToString(Size size, string Name)
+        {
+            AretinoAppleJuice AAJ = new AretinoAppleJuice();
+            AAJ.Size = size;
+            Assert.Equal(AAJ.Name, Name);
+        }
+
+        [Fact]
+        public void ShouldNotifySpecialInstructionsIfIceChanges()
+        {
+            AretinoAppleJuice AAJ = new AretinoAppleJuice();
+            Assert.PropertyChanged(AAJ, "SpecialInstructions", () => AAJ.Ice = true);
+        }
     }
 }
