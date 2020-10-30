@@ -1,7 +1,7 @@
 ﻿/*
  * Author: Zach Hazen
  * Class: MenuTests.cs
- * Purpose: Test the Menu.cs class in the Data library
+ * Purpose: Tests the Menu.cs class in the Data library
  */
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,6 @@ using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data.Sides;
 using BleakwindBuffet.Data.Drinks;
-using System.Security.Cryptography.X509Certificates;
 
 namespace BleakwindBuffet.DataTests.UnitTests
 {

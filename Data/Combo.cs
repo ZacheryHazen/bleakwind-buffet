@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 
 namespace BleakwindBuffet.Data
@@ -25,17 +26,17 @@ namespace BleakwindBuffet.Data
         /// <summary>
         /// The private backing Entree variable.
         /// </summary>
-        private Entree entree;
+        private Entree entree = null;
 
         /// <summary>
         /// The private backing Side variable.
         /// </summary>
-        private Side side;
+        private Side side = null;
 
         /// <summary>
         /// The private backing Drink variable.
         /// </summary>
-        private Drink drink;
+        private Drink drink = null;
 
         /// <summary>
         /// Constructor for Combo requiring its three components be initialized first - entree, side, and drink.
@@ -45,9 +46,9 @@ namespace BleakwindBuffet.Data
         /// <param name="d">The drink object to be included in the combo.</param>
         public Combo(Entree e, Side s, Drink d)
         {
-            entree = e;
-            side = s;
-            drink = d;
+            CEntree = e;
+            CSide = s;
+            CDrink = d;
         }
 
         /// <summary>
@@ -55,24 +56,26 @@ namespace BleakwindBuffet.Data
         /// corresponding listeners for whenever a property changes in the object. Removes the specialized Combo PropertyChanged EventListener when adding a new
         /// Entree to prevent memory loss and adds the listener to the new Entree.
         /// </summary>
-        public Entree Entree
+        public Entree CEntree
         {
             get
             {
                 return entree;
             }
             set
-            {
+            {   
                 if (entree != null)
                 {
                     entree.PropertyChanged -= ComboPropertyChangedInvoker;
                 }
-
+                
                 entree = value;
 
                 entree.PropertyChanged += ComboPropertyChangedInvoker;
-                
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Entree"));
+
+                System.Diagnostics.Debug.WriteLine("rerere");
+
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CEntree"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
@@ -84,7 +87,7 @@ namespace BleakwindBuffet.Data
         /// corresponding listeners for whenever a property changes in the object. Removes the specialized Combo PropertyChanged EventListener when adding a new
         /// Side to prevent memory loss and adds the listener to the new Side.
         /// </summary>
-        public Side Side
+        public Side CSide
         {
             get
             {
@@ -101,7 +104,7 @@ namespace BleakwindBuffet.Data
 
                 side.PropertyChanged += ComboPropertyChangedInvoker;
 
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Side"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CSide"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
@@ -113,7 +116,7 @@ namespace BleakwindBuffet.Data
         /// corresponding listeners for whenever a property changes in the object. Removes the specialized Combo PropertyChanged EventListener when adding a new
         /// Drink to prevent memory loss and adds the listener to the new Drink.
         /// </summary>
-        public Drink Drink
+        public Drink CDrink
         {
             get
             {
@@ -130,7 +133,7 @@ namespace BleakwindBuffet.Data
 
                 drink.PropertyChanged += ComboPropertyChangedInvoker;
 
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Drink"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CDrink"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
@@ -174,10 +177,6 @@ namespace BleakwindBuffet.Data
                 }
 
                 comboInstructions.Add(side.ToString());
-                foreach (string item in side.SpecialInstructions)
-                {
-                    comboInstructions.Add(item);
-                }
 
                 comboInstructions.Add(drink.ToString());
                 foreach (string item in drink.SpecialInstructions)
@@ -196,18 +195,7 @@ namespace BleakwindBuffet.Data
         /// <param name="e">This is the property being changed in the Entree, Drink, or Side that the eventhandler triggering this function is attached to.</param>
         public void ComboPropertyChangedInvoker(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Price")
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
-            }
-            else if (e.PropertyName == "Calories")
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
-            }
-            else if (e.PropertyName == "SpecialInstructions")
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(e.PropertyName));
         }
     }
 }

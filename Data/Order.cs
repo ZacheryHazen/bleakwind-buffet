@@ -38,12 +38,12 @@ namespace BleakwindBuffet.Data
         /// <summary>
         /// Private backing variable for the order number in each Order object.
         /// </summary>
-        public int number = 0;
+        private int number = 0;
 
         /// <summary>
         /// Static variable that determines what the next order number should be.
         /// </summary>
-        private static int nextOrderNumber = 1;
+        public static int nextOrderNumber = 1;
 
         /// <summary>
         /// The backing list that holds every orderItem. Is used to circumvent creating an entirely new List class specific to IOrderItems with the correct modifications.
@@ -63,7 +63,7 @@ namespace BleakwindBuffet.Data
         /// <summary>
         /// Returns the Count of all items in the orderItems list.
         /// </summary>
-        int Count => orderItems.Count;
+        public int Count => orderItems.Count;
 
         /// <summary>
         /// The order number of the Order object. This should be unique to every order, and makes use of a PropertyChanged event handler to notify the appropriate listeners when changed.
