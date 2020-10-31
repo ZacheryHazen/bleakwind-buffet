@@ -15,7 +15,7 @@ namespace BleakwindBuffet.Data
     /// <summary>
     /// Abstract class to be implemented by all drinks in the Bleakwind Buffet. Provides fields that all drinks should possess.
     /// </summary>
-    public abstract class Drink
+    public abstract class Drink : IOrderItem
     {
         // PropertyChanged event handler to be invoked when changing any of the descendant's properties.
         public abstract event PropertyChangedEventHandler PropertyChanged;

@@ -49,10 +49,10 @@ namespace PointOfSale
         ComboBox[] comboBoxes;
 
         /// <summary>
-        /// An array of bindings for the ComboBoxes and CheckBoxes.
+        /// An array of bindings for the CheckBoxes and ComboBoxes.
         /// </summary>
-        Binding[] comboBoxBindings;
         Binding[] checkBoxBindings;
+        Binding[] comboBoxBindings;
 
         /// <summary>
         /// All of the options for the enumerators - couldn't find a way to retrieve all available options succinctly.

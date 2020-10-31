@@ -31,14 +31,14 @@ namespace BleakwindBuffet.Data
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         /// <summary>
-        /// The sales tax rate to be used when determining the Tax and Total properties.
+        /// Private backing variable for the sales tax rate.
         /// </summary>
-        public double SalesTaxRate { get; set; } = 0.12;
+        private double salesTaxRate = 0.12;
 
         /// <summary>
         /// Private backing variable for the order number in each Order object.
         /// </summary>
-        private int number = 0;
+        private int number;
 
         /// <summary>
         /// Static variable that determines what the next order number should be.
@@ -64,6 +64,21 @@ namespace BleakwindBuffet.Data
         /// Returns the Count of all items in the orderItems list.
         /// </summary>
         public int Count => orderItems.Count;
+
+        /// <summary>
+        /// The sales tax rate to be used when determining the Tax and Total properties.
+        /// </summary>
+        public double SalesTaxRate
+        {
+            get
+            {
+                return salesTaxRate;
+            }
+            set
+            {
+                salesTaxRate = value;
+            }
+        }
 
         /// <summary>
         /// The order number of the Order object. This should be unique to every order, and makes use of a PropertyChanged event handler to notify the appropriate listeners when changed.

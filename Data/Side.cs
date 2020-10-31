@@ -15,7 +15,7 @@ namespace BleakwindBuffet.Data
     /// <summary>
     /// Abstract class to be implemented by all sides in the Bleakwind Buffet. Provides fields that all sides should possess.
     /// </summary>
-    public abstract class Side
+    public abstract class Side : IOrderItem
     {
         // PropertyChanged event handler to be invoked when changing any of the descendant's properties.
         public abstract event PropertyChangedEventHandler PropertyChanged;
