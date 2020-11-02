@@ -1,4 +1,9 @@
-﻿using System;
+﻿/** Author: Zach Hazen
+ *  Class Name: OrderItemsList.cs
+ *  Purpose: Works with the Menu class in the Data namespace to supply a list of entrees, drinks, and sides to the Website namespace.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
