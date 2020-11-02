@@ -24,9 +24,9 @@ namespace BleakwindBuffet.Data
         /// Method used to return all possible entree items.
         /// </summary>
         /// <returns>List of all entree items.</returns>
-        public static IEnumerable<IOrderItem> Entrees()
+        public static IEnumerable<Entree> Entrees()
         {
-            List<IOrderItem> orderItems = new List<IOrderItem>();
+            List<Entree> orderItems = new List<Entree>();
             orderItems.Add(new BriarheartBurger());
             orderItems.Add(new DoubleDraugr());
             orderItems.Add(new GardenOrcOmelette());
@@ -41,9 +41,9 @@ namespace BleakwindBuffet.Data
         /// Method used to return all possible side items including various sizes.
         /// </summary>
         /// <returns>A list containing all side items factoring in sizes.</returns>
-        public static IEnumerable<IOrderItem> Sides()
+        public static IEnumerable<Side> Sides()
         {
-            List<IOrderItem> orderItems = new List<IOrderItem>();
+            List<Side> orderItems = new List<Side>();
             orderItems.Add(new DragonbornWaffleFries());
             orderItems.Add(new DragonbornWaffleFries());
             orderItems.Add(new DragonbornWaffleFries());
@@ -69,9 +69,9 @@ namespace BleakwindBuffet.Data
         /// Method used to return all drink items including various sizes and flavors.
         /// </summary>
         /// <returns>List of all possible drink items factoring in sizes and flavors.</returns>
-        public static IEnumerable<IOrderItem> Drinks()
+        public static IEnumerable<Drink> Drinks()
         {
-            List<IOrderItem> orderItems = new List<IOrderItem>();
+            List<Drink> orderItems = new List<Drink>();
             orderItems.Add(new AretinoAppleJuice());
             orderItems.Add(new AretinoAppleJuice());
             orderItems.Add(new AretinoAppleJuice());

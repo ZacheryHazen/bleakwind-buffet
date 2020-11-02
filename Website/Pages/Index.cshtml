@@ -1,0 +1,85 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="page-header">Bleakwind Buffet</h1>
+    <p>
+        We at Bleakwind Buffet are proud to bring you authentic fantasy meals straight from the world of Skyrim. Shake the blood
+        off your sword and sake your thirst with one of our old-fashioned sailor sodas. Hack into a Smokehouse Skeleton with your dagger.
+        Or vanquish the the mighty Thalmor Triple Burger! You’ve had a hard adventure and earned your loot, so spend it with us!
+    </p>
+    <h2 class="sub-header">Entrees</h2>
+    @foreach (BleakwindBuffet.Data.Entree entree in OrderItemsList.entreeItems)
+    {
+        <div class="menu-item">
+            <div class="item-name">
+                @entree.ToString()
+            </div>
+            <div class="calories">
+                @entree.Calories
+            </div>
+            <div class="price">
+                @entree.Price
+            </div>
+        </div>
+    }
+
+    <h2 class="sub-header">Sides</h2>
+    @foreach (BleakwindBuffet.Data.Side side in OrderItemsList.sideItems)
+    {
+        <div class="menu-item">
+            <div class="item-name">
+                @side.ToString()
+            </div>
+            <div class="calories">
+                @side.Calories
+            </div>
+            <div class="price">
+                @side.Price
+            </div>
+        </div>
+    }
+    <h2 class="sub-header">Drinks</h2>
+    @foreach (BleakwindBuffet.Data.Drink drink in OrderItemsList.drinkItems)
+    {
+        <div class="menu-item">
+            <div class="item-name">
+                @drink.ToString()
+            </div>
+            <div class="calories">
+                @drink.Calories
+            </div>
+            <div class="price">
+                @drink.Price
+            </div>
+        </div>
+    }
+    <br />
+    <h2>Combo Details</h2>
+    <p>Any entree, side, and drink can be combined to result in a <i>combo</i>. Combining these items into a combo will result in a 1$ discount!</p>
+
+    <h2>Possible Soda Flavors</h2>
+    <ul class="sodaflavors">
+        <li>
+            Blackberry
+        </li>
+        <li>
+            Cherry
+        </li>
+        <li>
+            Grapefruit
+        </li>
+        <li>
+            Lemon
+        </li>
+        <li>
+            Peach
+        </li>
+        <li>
+            Watermelon
+        </li>
+    </ul>
+</div>
