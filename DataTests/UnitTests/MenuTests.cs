@@ -14,6 +14,7 @@ using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data.Sides;
 using BleakwindBuffet.Data.Drinks;
+using System.Linq;
 
 namespace BleakwindBuffet.DataTests.UnitTests
 {
@@ -22,7 +23,7 @@ namespace BleakwindBuffet.DataTests.UnitTests
         [Fact]
         public void ShouldReturnCorrectItemsFromEntrees()
         {
-            List<IOrderItem> orderItems = (List<IOrderItem>)Menu.Entrees();
+            List<IOrderItem> orderItems = Menu.Entrees.ToList();
             Assert.Collection(orderItems,
                 item => Assert.IsType<BriarheartBurger>(orderItems[0]),
                 item => Assert.IsType<DoubleDraugr>(orderItems[1]),
@@ -37,7 +38,7 @@ namespace BleakwindBuffet.DataTests.UnitTests
         [Fact]
         public void ShouldReturnCorrectItemTypesFromSides()
         {
-            List<IOrderItem> orderItems = (List<IOrderItem>)Menu.Sides();
+            List<IOrderItem> orderItems = Menu.Sides.ToList();
             Assert.Collection(orderItems,
                 item => Assert.IsType<DragonbornWaffleFries>(orderItems[0]),
                 item => Assert.IsType<DragonbornWaffleFries>(orderItems[1]),
@@ -57,7 +58,7 @@ namespace BleakwindBuffet.DataTests.UnitTests
         [Fact]
         public void ShouldReturnCorrectItemSizesFromSides()
         {
-            List<IOrderItem> orderItems = (List<IOrderItem>)Menu.Sides();
+            List<IOrderItem> orderItems = Menu.Sides.ToList();
             Assert.Collection(orderItems,
                 item => Assert.Equal(Size.Small, ((Side)orderItems[0]).Size),
                 item => Assert.Equal(Size.Medium, ((Side)orderItems[1]).Size),
@@ -77,7 +78,7 @@ namespace BleakwindBuffet.DataTests.UnitTests
         [Fact]
         public void ShouldReturnCorrectItemTypesFromDrinks()
         {
-            List<IOrderItem> orderItems = (List<IOrderItem>)Menu.Drinks();
+            List<IOrderItem> orderItems = Menu.Drinks.ToList();
             Assert.Collection(orderItems,
                 item => Assert.IsType<AretinoAppleJuice>(orderItems[0]),
                 item => Assert.IsType<AretinoAppleJuice>(orderItems[1]),
@@ -115,7 +116,7 @@ namespace BleakwindBuffet.DataTests.UnitTests
         [Fact]
         public void ShouldReturnCorrectItemSizeFromDrinks()
         {
-            List<IOrderItem> orderItems = (List<IOrderItem>)Menu.Drinks();
+            List<IOrderItem> orderItems = Menu.Drinks.ToList();
             Assert.Collection(orderItems,
                 item => Assert.Equal(Size.Small, ((Drink)orderItems[0]).Size),
                 item => Assert.Equal(Size.Medium, ((Drink)orderItems[1]).Size),
@@ -153,7 +154,7 @@ namespace BleakwindBuffet.DataTests.UnitTests
         [Fact]
         public void ShouldReturnCorrectFlavorsFromDrinks()
         {
-            List<IOrderItem> orderItems = (List<IOrderItem>)Menu.Drinks();
+            List<IOrderItem> orderItems = Menu.Drinks.ToList();
             List<IOrderItem> sailorSodas = new List<IOrderItem>();
             for (int x = 9; x < 27; x++)
             {
@@ -184,82 +185,82 @@ namespace BleakwindBuffet.DataTests.UnitTests
         [Fact]
         public void ShouldReturnCorrectTypesFromFullMenu()
         {
-            List<IOrderItem> orderItems = (List<IOrderItem>)Menu.FullMenu();
+            List<IOrderItem> orderItems = Menu.All.ToList();
             Assert.Collection(orderItems,
-                item => Assert.IsType<AretinoAppleJuice>(orderItems[0]),
-                item => Assert.IsType<AretinoAppleJuice>(orderItems[1]),
-                item => Assert.IsType<AretinoAppleJuice>(orderItems[2]),
-                item => Assert.IsType<CandlehearthCoffee>(orderItems[3]),
-                item => Assert.IsType<CandlehearthCoffee>(orderItems[4]),
-                item => Assert.IsType<CandlehearthCoffee>(orderItems[5]),
-                item => Assert.IsType<MarkarthMilk>(orderItems[6]),
-                item => Assert.IsType<MarkarthMilk>(orderItems[7]),
-                item => Assert.IsType<MarkarthMilk>(orderItems[8]),
-                item => Assert.IsType<SailorSoda>(orderItems[9]),
-                item => Assert.IsType<SailorSoda>(orderItems[10]),
-                item => Assert.IsType<SailorSoda>(orderItems[11]),
-                item => Assert.IsType<SailorSoda>(orderItems[12]),
-                item => Assert.IsType<SailorSoda>(orderItems[13]),
-                item => Assert.IsType<SailorSoda>(orderItems[14]),
-                item => Assert.IsType<SailorSoda>(orderItems[15]),
-                item => Assert.IsType<SailorSoda>(orderItems[16]),
-                item => Assert.IsType<SailorSoda>(orderItems[17]),
-                item => Assert.IsType<SailorSoda>(orderItems[18]),
-                item => Assert.IsType<SailorSoda>(orderItems[19]),
-                item => Assert.IsType<SailorSoda>(orderItems[20]),
-                item => Assert.IsType<SailorSoda>(orderItems[21]),
-                item => Assert.IsType<SailorSoda>(orderItems[22]),
-                item => Assert.IsType<SailorSoda>(orderItems[23]),
-                item => Assert.IsType<SailorSoda>(orderItems[24]),
-                item => Assert.IsType<SailorSoda>(orderItems[25]),
-                item => Assert.IsType<SailorSoda>(orderItems[26]),
-                item => Assert.IsType<WarriorWater>(orderItems[27]),
-                item => Assert.IsType<WarriorWater>(orderItems[28]),
-                item => Assert.IsType<WarriorWater>(orderItems[29]),
-                item => Assert.IsType<DragonbornWaffleFries>(orderItems[30]),
-                item => Assert.IsType<DragonbornWaffleFries>(orderItems[31]),
-                item => Assert.IsType<DragonbornWaffleFries>(orderItems[32]),
-                item => Assert.IsType<FriedMiraak>(orderItems[33]),
-                item => Assert.IsType<FriedMiraak>(orderItems[34]),
-                item => Assert.IsType<FriedMiraak>(orderItems[35]),
-                item => Assert.IsType<MadOtarGrits>(orderItems[36]),
-                item => Assert.IsType<MadOtarGrits>(orderItems[37]),
-                item => Assert.IsType<MadOtarGrits>(orderItems[38]),
-                item => Assert.IsType<VokunSalad>(orderItems[39]),
-                item => Assert.IsType<VokunSalad>(orderItems[40]),
-                item => Assert.IsType<VokunSalad>(orderItems[41]),
-                item => Assert.IsType<BriarheartBurger>(orderItems[42]),
-                item => Assert.IsType<DoubleDraugr>(orderItems[43]),
-                item => Assert.IsType<GardenOrcOmelette>(orderItems[44]),
-                item => Assert.IsType<PhillyPoacher>(orderItems[45]),
-                item => Assert.IsType<SmokehouseSkeleton>(orderItems[46]),
-                item => Assert.IsType<ThalmorTriple>(orderItems[47]),
-                item => Assert.IsType<ThugsTBone>(orderItems[48])
+                item => Assert.IsType<BriarheartBurger>(orderItems[0]),
+                item => Assert.IsType<DoubleDraugr>(orderItems[1]),
+                item => Assert.IsType<GardenOrcOmelette>(orderItems[2]),
+                item => Assert.IsType<PhillyPoacher>(orderItems[3]),
+                item => Assert.IsType<SmokehouseSkeleton>(orderItems[4]),
+                item => Assert.IsType<ThalmorTriple>(orderItems[5]),
+                item => Assert.IsType<ThugsTBone>(orderItems[6]),
+                item => Assert.IsType<DragonbornWaffleFries>(orderItems[7]),
+                item => Assert.IsType<DragonbornWaffleFries>(orderItems[8]),
+                item => Assert.IsType<DragonbornWaffleFries>(orderItems[9]),
+                item => Assert.IsType<FriedMiraak>(orderItems[10]),
+                item => Assert.IsType<FriedMiraak>(orderItems[11]),
+                item => Assert.IsType<FriedMiraak>(orderItems[12]),
+                item => Assert.IsType<MadOtarGrits>(orderItems[13]),
+                item => Assert.IsType<MadOtarGrits>(orderItems[14]),
+                item => Assert.IsType<MadOtarGrits>(orderItems[15]),
+                item => Assert.IsType<VokunSalad>(orderItems[16]),
+                item => Assert.IsType<VokunSalad>(orderItems[17]),
+                item => Assert.IsType<VokunSalad>(orderItems[18]),
+                item => Assert.IsType<AretinoAppleJuice>(orderItems[19]),
+                item => Assert.IsType<AretinoAppleJuice>(orderItems[20]),
+                item => Assert.IsType<AretinoAppleJuice>(orderItems[21]),
+                item => Assert.IsType<CandlehearthCoffee>(orderItems[22]),
+                item => Assert.IsType<CandlehearthCoffee>(orderItems[23]),
+                item => Assert.IsType<CandlehearthCoffee>(orderItems[24]),
+                item => Assert.IsType<MarkarthMilk>(orderItems[25]),
+                item => Assert.IsType<MarkarthMilk>(orderItems[26]),
+                item => Assert.IsType<MarkarthMilk>(orderItems[27]),
+                item => Assert.IsType<SailorSoda>(orderItems[28]),
+                item => Assert.IsType<SailorSoda>(orderItems[29]),
+                item => Assert.IsType<SailorSoda>(orderItems[30]),
+                item => Assert.IsType<SailorSoda>(orderItems[31]),
+                item => Assert.IsType<SailorSoda>(orderItems[32]),
+                item => Assert.IsType<SailorSoda>(orderItems[33]),
+                item => Assert.IsType<SailorSoda>(orderItems[34]),
+                item => Assert.IsType<SailorSoda>(orderItems[35]),
+                item => Assert.IsType<SailorSoda>(orderItems[36]),
+                item => Assert.IsType<SailorSoda>(orderItems[37]),
+                item => Assert.IsType<SailorSoda>(orderItems[38]),
+                item => Assert.IsType<SailorSoda>(orderItems[39]),
+                item => Assert.IsType<SailorSoda>(orderItems[40]),
+                item => Assert.IsType<SailorSoda>(orderItems[41]),
+                item => Assert.IsType<SailorSoda>(orderItems[42]),
+                item => Assert.IsType<SailorSoda>(orderItems[43]),
+                item => Assert.IsType<SailorSoda>(orderItems[44]),
+                item => Assert.IsType<SailorSoda>(orderItems[45]),
+                item => Assert.IsType<WarriorWater>(orderItems[46]),
+                item => Assert.IsType<WarriorWater>(orderItems[47]),
+                item => Assert.IsType<WarriorWater>(orderItems[48])                
             );
         }
 
         [Fact]
         public void ShouldReturnCorrectSizesFromFullMenu()
         {
-            List<IOrderItem> orderItems = (List<IOrderItem>)Menu.FullMenu();
+            List<IOrderItem> orderItems = Menu.All.ToList();
             List<IOrderItem> sizeItems = new List<IOrderItem>();
-            for (int x = 0; x < 42; x++)
+            for (int x = 7; x < 49; x++)
             {
                 sizeItems.Add(orderItems[x]);
             }
             Assert.Collection(sizeItems,
-                item => Assert.Equal(Size.Small, ((Drink)sizeItems[0]).Size),
-                item => Assert.Equal(Size.Medium, ((Drink)sizeItems[1]).Size),
-                item => Assert.Equal(Size.Large, ((Drink)sizeItems[2]).Size),
-                item => Assert.Equal(Size.Small, ((Drink)sizeItems[3]).Size),
-                item => Assert.Equal(Size.Medium, ((Drink)sizeItems[4]).Size),
-                item => Assert.Equal(Size.Large, ((Drink)sizeItems[5]).Size),
-                item => Assert.Equal(Size.Small, ((Drink)sizeItems[6]).Size),
-                item => Assert.Equal(Size.Medium, ((Drink)sizeItems[7]).Size),
-                item => Assert.Equal(Size.Large, ((Drink)sizeItems[8]).Size),
-                item => Assert.Equal(Size.Small, ((Drink)sizeItems[9]).Size),
-                item => Assert.Equal(Size.Medium, ((Drink)sizeItems[10]).Size),
-                item => Assert.Equal(Size.Large, ((Drink)sizeItems[11]).Size),
+                item => Assert.Equal(Size.Small, ((Side)sizeItems[0]).Size),
+                item => Assert.Equal(Size.Medium, ((Side)sizeItems[1]).Size),
+                item => Assert.Equal(Size.Large, ((Side)sizeItems[2]).Size),
+                item => Assert.Equal(Size.Small, ((Side)sizeItems[3]).Size),
+                item => Assert.Equal(Size.Medium, ((Side)sizeItems[4]).Size),
+                item => Assert.Equal(Size.Large, ((Side)sizeItems[5]).Size),
+                item => Assert.Equal(Size.Small, ((Side)sizeItems[6]).Size),
+                item => Assert.Equal(Size.Medium, ((Side)sizeItems[7]).Size),
+                item => Assert.Equal(Size.Large, ((Side)sizeItems[8]).Size),
+                item => Assert.Equal(Size.Small, ((Side)sizeItems[9]).Size),
+                item => Assert.Equal(Size.Medium, ((Side)sizeItems[10]).Size),
+                item => Assert.Equal(Size.Large, ((Side)sizeItems[11]).Size),
                 item => Assert.Equal(Size.Small, ((Drink)sizeItems[12]).Size),
                 item => Assert.Equal(Size.Medium, ((Drink)sizeItems[13]).Size),
                 item => Assert.Equal(Size.Large, ((Drink)sizeItems[14]).Size),
@@ -278,27 +279,27 @@ namespace BleakwindBuffet.DataTests.UnitTests
                 item => Assert.Equal(Size.Small, ((Drink)sizeItems[27]).Size),
                 item => Assert.Equal(Size.Medium, ((Drink)sizeItems[28]).Size),
                 item => Assert.Equal(Size.Large, ((Drink)sizeItems[29]).Size),
-                item => Assert.Equal(Size.Small, ((Side)sizeItems[30]).Size),
-                item => Assert.Equal(Size.Medium, ((Side)sizeItems[31]).Size),
-                item => Assert.Equal(Size.Large, ((Side)sizeItems[32]).Size),
-                item => Assert.Equal(Size.Small, ((Side)sizeItems[33]).Size),
-                item => Assert.Equal(Size.Medium, ((Side)sizeItems[34]).Size),
-                item => Assert.Equal(Size.Large, ((Side)sizeItems[35]).Size),
-                item => Assert.Equal(Size.Small, ((Side)sizeItems[36]).Size),
-                item => Assert.Equal(Size.Medium, ((Side)sizeItems[37]).Size),
-                item => Assert.Equal(Size.Large, ((Side)sizeItems[38]).Size),
-                item => Assert.Equal(Size.Small, ((Side)sizeItems[39]).Size),
-                item => Assert.Equal(Size.Medium, ((Side)sizeItems[40]).Size),
-                item => Assert.Equal(Size.Large, ((Side)sizeItems[41]).Size)
+                item => Assert.Equal(Size.Small, ((Drink)sizeItems[30]).Size),
+                item => Assert.Equal(Size.Medium, ((Drink)sizeItems[31]).Size),
+                item => Assert.Equal(Size.Large, ((Drink)sizeItems[32]).Size),
+                item => Assert.Equal(Size.Small, ((Drink)sizeItems[33]).Size),
+                item => Assert.Equal(Size.Medium, ((Drink)sizeItems[34]).Size),
+                item => Assert.Equal(Size.Large, ((Drink)sizeItems[35]).Size),
+                item => Assert.Equal(Size.Small, ((Drink)sizeItems[36]).Size),
+                item => Assert.Equal(Size.Medium, ((Drink)sizeItems[37]).Size),
+                item => Assert.Equal(Size.Large, ((Drink)sizeItems[38]).Size),
+                item => Assert.Equal(Size.Small, ((Drink)sizeItems[39]).Size),
+                item => Assert.Equal(Size.Medium, ((Drink)sizeItems[40]).Size),
+                item => Assert.Equal(Size.Large, ((Drink)sizeItems[41]).Size)
             );
         }
 
         [Fact]
         public void ShouldReturnCorrectSailorSodaFlavorsFromFullMenu()
         {
-            List<IOrderItem> orderItems = (List<IOrderItem>)Menu.FullMenu();
+            List<IOrderItem> orderItems = Menu.All.ToList();
             List<IOrderItem> sailorSodas = new List<IOrderItem>();
-            for (int x = 9; x < 27; x++)
+            for (int x = 28; x < 46; x++)
             {
                 sailorSodas.Add(orderItems[x]);
             }
