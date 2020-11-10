@@ -1,7 +1,7 @@
 ﻿/*
  * Author: Zach Hazen
  * Class Name: Menu.cs
- * Purpose: Static class used to display all available options to be ordered from the Bleakwind Buffet.
+ * Purpose: Static class used to display all available options to be ordered from the Bleakwind Buffet as well as filter items based on certain parameters.
  */
 
 
@@ -17,7 +17,7 @@ using System.Linq;
 namespace BleakwindBuffet.Data
 {
     /// <summary>
-    /// Class used to represent the menu for Bleakwind Buffet, shows all menu items.
+    /// Class used to represent the menu for Bleakwind Buffet, shows all menu items and filters items through a variety of methods.
     /// </summary>
     public static class Menu
     {
@@ -144,6 +144,12 @@ namespace BleakwindBuffet.Data
             }
         }
 
+        /// <summary>
+        /// This method sorts through a given IEnumerable of IOrderItems and searches through their ToStrings for a case-insensitive text query.
+        /// </summary>
+        /// <param name="orderItems">This is the IEnumerable being searched through.</param>
+        /// <param name="text">This is the text query used to match against the ToStrings.</param>
+        /// <returns>This is the filtered list of IOrderItems.</returns>
         public static IEnumerable<IOrderItem> Search(IEnumerable<IOrderItem> orderItems, string text)
         { 
             if (text == null)
@@ -163,6 +169,12 @@ namespace BleakwindBuffet.Data
             return filteredItems;
         }
 
+        /// <summary>
+        /// This method sorts through a given IEnumerable of IOrderItems and searches through each IOrderItem's type to match against the categories supplied.
+        /// </summary>
+        /// <param name="orderItems">This is the IEnumerable of IOrderItems to be searched through.</param>
+        /// <param name="categories">This is the categories that should be matched against the order items.</param>
+        /// <returns>This is the filtered list of IOrderItems.</returns>
         public static IEnumerable<IOrderItem> FilterByCategory(IEnumerable<IOrderItem> orderItems, IEnumerable<string> categories)
         {
             if (categories == null || categories.Count() == 0)
@@ -190,6 +202,14 @@ namespace BleakwindBuffet.Data
             return filteredItems;
         }
 
+        /// <summary>
+        /// This method sorts through a given IEnumerable of IOrderItems and determines which order items fall within a range of calories.
+        /// If a minimum or maximum are left as null, it's treated as negative infinity or infinity respectively.
+        /// </summary>
+        /// <param name="orderItems">This is the IEnumerable of IOrderItems to be searched through.</param>
+        /// <param name="min">This is the minimum amount of calories allowed.</param>
+        /// <param name="max">This is the maximum amount of calories allowed.</param>
+        /// <returns>This is the filtered list of IOrderItems.</returns>
         public static IEnumerable<IOrderItem> FilterByCalories(IEnumerable<IOrderItem> orderItems, int? min, int? max)
         {
             if (min == null && max == null)
@@ -233,6 +253,14 @@ namespace BleakwindBuffet.Data
             return filteredItems;
         }
 
+        /// <summary>
+        /// This method sorts through a given IEnumerable of IOrderItems and determines which order items fall within a price range.
+        /// If a minimum or maximum are left as null, it's treated as negative infinity or infinity respectively.
+        /// </summary>
+        /// <param name="orderItems">This is the IEnumerable of IOrderItems to be searched through.</param>
+        /// <param name="min">This is the minimum price allowed.</param>
+        /// <param name="max">This is the maximum price allowed.</param>
+        /// <returns>This is the filtered list of IOrderItems.</returns>
         public static IEnumerable<IOrderItem> FilterByPrice(IEnumerable<IOrderItem> orderItems, double? min, double? max)
         {
             if (min == null && max == null)
@@ -272,7 +300,6 @@ namespace BleakwindBuffet.Data
                     }
                 }
             }
-
             return filteredItems;
         }
     }

@@ -4,55 +4,85 @@
     ViewData["Title"] = "Home page";
 }
 
-<form id="menu-search">
-    <div class="text-center">
-        <h1 class="page-header">Bleakwind Buffet</h1>
-
-        <p>
-            We at Bleakwind Buffet are proud to bring you authentic fantasy meals straight from the world of Skyrim. Shake the blood
-            off your sword and sake your thirst with one of our old-fashioned sailor sodas. Hack into a Smokehouse Skeleton with your dagger.
-            Or vanquish the the mighty Thalmor Triple Burger! You’ve had a hard adventure and earned your loot, so spend it with us!
-        </p>
+<!--
+    Author: Zach Hazen
+    File: Index.cshtml
+    Purpose: This file should display a summary of the buffet, filtering options, and a filtered list of all order items.
+-->
 
 
-        <div id="text-search">
-            <input type="text" name="TextSearch" value="@Model.TextSearch" />
-            <input type="submit" value="Search" />
-        </div>
+<div class="text-center">
+    <form id="menu-search" class="pull-left">
 
         <div id="filters">
-            <h4>Order Item Type</h4>
-            @foreach (string name in Model.ItemTypeOptions)
-            {
-                <label>
-                    <input type="checkbox" name="ItemTypes" value=@name checked="@Model.ItemTypes.Contains(name)" />
-                    @name
-                </label>
-            }
 
+            <div id="text-search">
+                <h5>Search the name of an entree: </h5>
+                <div id="search-options">
+                    <input type="text" name="TextSearch" value="@Model.TextSearch" />
+                    <input type="submit" value="Search" />
+                </div>
 
-            <div id="calories-number">
-                <h4>Calories</h4>
+                <br />
 
-                From
-                <input name="CaloriesMin" type="number" min="0" max="1000" placeholder="min" step="1" value="@Model.CaloriesMin" />
-                to
-                <input name="CaloriesMax" type="number" min="0" max="1000" placeholder="max" step="1" value="@Model.CaloriesMax" />
             </div>
 
-            <br />
+            <div id="item-type">
+                <h5>Order Item Type</h5>
+                <div id="item-options">
+                    @foreach (string name in Model.ItemTypeOptions)
+                    {
+                        <label>
+                            <input type="checkbox" name="ItemTypes" value=@name checked="@Model.ItemTypes.Contains(name)" />
+                            @name
+                        </label>
+                    }
+                </div>
 
-            <div id="price-number">
-                <h4>Price</h4>
+                <br />
 
-                From
-                <input name="PriceMin" type="number" min="0" max="10" placeholder="min" step="0.01" value="@Model.PriceMin" />
-                to
-                <input name="PriceMax" type="number" min="0" max="10" placeholder="max" step="0.01" value="@Model.PriceMax" />
+            </div>
+
+            <div id="calories">
+                <h5>Calories</h5>
+
+                <div id="calorie-options">
+                    From
+                    <input name="CaloriesMin" type="number" min="0" max="1000" placeholder="min" step="1" value="@Model.CaloriesMin" />
+                    to
+                    <input name="CaloriesMax" type="number" min="0" max="1000" placeholder="max" step="1" value="@Model.CaloriesMax" />
+                </div>
+
+                <br />
+
+            </div>
+
+
+
+            <div id="prices">
+                <h5>Price</h5>
+
+                <div id="price-options">
+                    From
+                    <input name="PriceMin" type="number" min="0" max="10" placeholder="min" step="0.01" value="@Model.PriceMin" />
+                    to
+                    <input name="PriceMax" type="number" min="0" max="10" placeholder="max" step="0.01" value="@Model.PriceMax" />
+                </div>
+
+                <br />
+
             </div>
         </div>
 
         <div id="displayed-items">
+            <h1 class="page-header">Bleakwind Buffet</h1>
+
+            <p>
+                We at Bleakwind Buffet are proud to bring you authentic fantasy meals straight from the world of Skyrim. Shake the blood
+                off your sword and sake your thirst with one of our old-fashioned sailor sodas. Hack into a Smokehouse Skeleton with your dagger.
+                Or vanquish the the mighty Thalmor Triple Burger! You’ve had a hard adventure and earned your loot, so spend it with us!
+            </p>
+
             <h2 class="sub-header">Entrees</h2>
 
             @foreach (BleakwindBuffet.Data.IOrderItem orderItem in Model.OrderItems)
@@ -112,35 +142,34 @@
                     </div>
                 }
             }
+
+            <br />
         </div>
+    </form>
+    <h2>Combo Details</h2>
 
-        <br />
+    <p>Any entree, side, and drink can be combined to result in a <i>combo</i>. Combining these items into a combo will result in a 1$ discount!</p>
 
-        <h2>Combo Details</h2>
+    <h2>Possible Soda Flavors</h2>
 
-        <p>Any entree, side, and drink can be combined to result in a <i>combo</i>. Combining these items into a combo will result in a 1$ discount!</p>
-
-        <h2>Possible Soda Flavors</h2>
-
-        <ul class="sodaflavors">
-            <li>
-                Blackberry
-            </li>
-            <li>
-                Cherry
-            </li>
-            <li>
-                Grapefruit
-            </li>
-            <li>
-                Lemon
-            </li>
-            <li>
-                Peach
-            </li>
-            <li>
-                Watermelon
-            </li>
-        </ul>
-    </div>
-</form>
+    <ul class="sodaflavors">
+        <li>
+            Blackberry
+        </li>
+        <li>
+            Cherry
+        </li>
+        <li>
+            Grapefruit
+        </li>
+        <li>
+            Lemon
+        </li>
+        <li>
+            Peach
+        </li>
+        <li>
+            Watermelon
+        </li>
+    </ul>
+</div>

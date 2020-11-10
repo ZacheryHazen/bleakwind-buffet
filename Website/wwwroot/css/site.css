@@ -1,4 +1,11 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+﻿/**
+    Author: Zach Hazen
+    File name: site.css
+    Purpose: This file should provide styles to specific element classes and id's across the BleakwindBuffet web application.
+*/
+
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
@@ -61,6 +68,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color: whitesmoke;
 }
 .footer {
   position: absolute;
@@ -73,13 +81,6 @@ body {
 
 /* Specialized styles for Bleakwind Buffet
 **************************************************** */
-.page-header {
-
-}
-
-.sub-header {
-
-}
 
 .menu-item {
     display:flex;
@@ -97,7 +98,7 @@ body {
     font-size: 1rem;
     border: 1px solid darkgray;
     margin-left: 5px;
-    background-color: whitesmoke;
+    background-color: lightgray;
 }
 
 .calories::before {
@@ -117,4 +118,64 @@ body {
 ul.sodaflavors {
     list-style-position: inside;
     list-style-type: none;
+}
+
+#menu-search {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 1px dashed black;
+}
+
+#filters {
+    margin-right: 25px;
+}
+
+
+#text-search {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px dashed gray;
+}
+
+#item-type {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px dashed gray;
+}
+
+#calories {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px dashed gray;
+}
+
+#prices {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+#search-options {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#item-options {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+#calorie-options {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+#price-options {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }

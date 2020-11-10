@@ -235,7 +235,7 @@ namespace BleakwindBuffet.DataTests.UnitTests
                 item => Assert.IsType<SailorSoda>(orderItems[45]),
                 item => Assert.IsType<WarriorWater>(orderItems[46]),
                 item => Assert.IsType<WarriorWater>(orderItems[47]),
-                item => Assert.IsType<WarriorWater>(orderItems[48])                
+                item => Assert.IsType<WarriorWater>(orderItems[48])
             );
         }
 
@@ -323,6 +323,303 @@ namespace BleakwindBuffet.DataTests.UnitTests
                 item => Assert.Equal(SodaFlavor.Watermelon, ((SailorSoda)sailorSodas[16]).Flavor),
                 item => Assert.Equal(SodaFlavor.Watermelon, ((SailorSoda)sailorSodas[17]).Flavor)
             );
+        }
+
+        [Fact]
+        public void NullSearchTermShouldReturnOriginalList()
+        {
+
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.Search(orderItems, null).ToList();
+
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(BB, test[0]),
+                item => Assert.Equal(DWF, test[1]),
+                item => Assert.Equal(SS, test[2])
+            );
+        }
+
+        [Theory]
+        [InlineData (3, "or")]
+        [InlineData(2, "ri")]
+        [InlineData(1, "t")]
+        [InlineData(0, "xy")]
+        public void SearchingATermShouldReturnTheCorrectResult(int count, string query)
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            ThalmorTriple TT = new ThalmorTriple();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(TT);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.Search(orderItems, query).ToList();
+            Assert.Equal(count, test.Count);
+        }
+
+        [Fact]
+        public void NullCategoriesShouldReturnOriginalList()
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+            
+            List<IOrderItem> test = Menu.FilterByCategory(orderItems, null).ToList();
+            
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(BB, test[0]),
+                item => Assert.Equal(DWF, test[1]),
+                item => Assert.Equal(SS, test[2])
+            );
+        }
+
+        [Theory]
+        [InlineData(0, "")]
+        [InlineData(1, "Entrees")]
+        [InlineData(2, "Entrees", "Sides")]
+        [InlineData(3, "Entrees", "Sides", "Drinks")]
+        public void SearchingACategoryShouldReturnTheCorrectResult(int count, params string[] categories)
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.FilterByCategory(orderItems, categories).ToList();
+
+            Assert.Equal(count, test.Count);
+        }
+
+        [Fact]
+        public void NullMinAndMaxPriceShouldReturnOriginalList()
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.FilterByPrice(orderItems, null, null).ToList();
+
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(BB, test[0]),
+                item => Assert.Equal(DWF, test[1]),
+                item => Assert.Equal(SS, test[2])
+            );
+        }
+
+        [Theory]
+        [InlineData(0, 0)]
+        [InlineData(1, 1)]
+        [InlineData(2, 2.0)]
+        [InlineData(3, 10.0)]
+        public void NullMinPriceShouldReturnUpToMaxPriceOrderItems(int count, double? max)
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.FilterByPrice(orderItems, null, max).ToList();
+
+            Assert.Equal(count, test.Count);
+        }
+
+        [Theory]
+        [InlineData(0, 10)]
+        [InlineData(1, 5)]
+        [InlineData(2, 1)]
+        [InlineData(3, 0)]
+        public void NullMaxPriceShouldReturnUpToMinPriceOrderItems(int count, double? min)
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.FilterByPrice(orderItems, min, null).ToList();
+
+            Assert.Equal(count, test.Count);
+        }
+
+        [Theory]
+        [InlineData(0, 0, 0)]
+        [InlineData(3, 0, 10)]
+        [InlineData(1, 0, 1)]
+        [InlineData(2, 0, 2)]
+        [InlineData(2, 1, 8)]
+        [InlineData(1, 6, 8)]
+        public void SearchingWithMinAndMaxPriceShouldReturnCorrectResults(int count, double min, double max)
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.FilterByPrice(orderItems, min, max).ToList();
+
+            Assert.Equal(count, test.Count);
+        }
+
+        [Theory]
+        [InlineData(.42)]
+        [InlineData(1.42)]
+        [InlineData(6.32)]
+        public void SearchingTheExactPriceShouldReturnTheCorrectResult(double price)
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.FilterByPrice(orderItems, price, price).ToList();
+
+            Assert.Single(test);
+        }
+
+        [Fact]
+        public void NullMinAndMaxCaloriesShouldReturnOriginalList()
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.FilterByCalories(orderItems, null, null).ToList();
+
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(BB, test[0]),
+                item => Assert.Equal(DWF, test[1]),
+                item => Assert.Equal(SS, test[2])
+            );
+        }
+
+        [Theory]
+        [InlineData(0, 0)]
+        [InlineData(1, 100)]
+        [InlineData(2, 200)]
+        [InlineData(3, 1000)]
+        public void NullMinCaloriesShouldReturnUpToMaxCaloriesOrderItems(int count, int? max)
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.FilterByCalories(orderItems, null, max).ToList();
+
+            Assert.Equal(count, test.Count);
+
+        }
+
+        [Theory]
+        [InlineData(0, 1000)]
+        [InlineData(1, 700)]
+        [InlineData(2, 100)]
+        [InlineData(3, 0)]
+        public void NullMaxCaloriesShouldReturnUpToMinCaloriesOrderItems(int count, int min)
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.FilterByCalories(orderItems, min, null).ToList();
+
+            Assert.Equal(count, test.Count);
+        }
+
+        [Theory]
+        [InlineData(0, 0, 0)]
+        [InlineData(3, 0, 1000)]
+        [InlineData(1, 0, 100)]
+        [InlineData(2, 0, 200)]
+        [InlineData(2, 100, 800)]
+        [InlineData(1, 600, 800)]
+        public void SearchingWithMinAndMaxCaloriesShouldReturnCorrectResults(int count, int min, int max)
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.FilterByCalories(orderItems, min, max).ToList();
+
+            Assert.Equal(count, test.Count);
+        }
+
+        [Theory]
+        [InlineData(77)]
+        [InlineData(117)]
+        [InlineData(743)]
+        public void SearchingTheExactCalorieValueShouldReturnTheCorrectResult(int price)
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(BB);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.FilterByCalories(orderItems, price, price).ToList();
+
+            Assert.Single(test);
         }
     }
 }
