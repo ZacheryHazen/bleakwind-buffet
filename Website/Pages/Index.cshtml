@@ -83,69 +83,98 @@
                 Or vanquish the the mighty Thalmor Triple Burger! You’ve had a hard adventure and earned your loot, so spend it with us!
             </p>
 
-            <h2 class="sub-header">Entrees</h2>
+            <div id="item-columns">
+                <div id="entree-column">
+                    <h2 class="sub-header">Entrees</h2>
 
-            @foreach (BleakwindBuffet.Data.IOrderItem orderItem in Model.OrderItems)
-            {
-                @if (orderItem is BleakwindBuffet.Data.Entree entree)
-                {
-                    <div class="menu-item">
-                        <div class="item-name">
-                            @entree.ToString()
-                        </div>
-                        <div class="calories">
-                            @entree.Calories
-                        </div>
-                        <div class="price">
-                            @entree.Price
-                        </div>
-                    </div>
-                }
-            }
+                    @foreach (BleakwindBuffet.Data.IOrderItem orderItem in Model.OrderItems)
+                    {
+                        @if (orderItem is BleakwindBuffet.Data.Entree entree)
+                        {
+                            <div class="menu-item">
+                                <div class="menu-specifications">
+                                    <div class="item-name">
+                                        @entree.ToString()
+                                    </div>
+                                    <div class="calories">
+                                        @entree.Calories
+                                    </div>
+                                    <div class="price">
+                                        @entree.Price
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="description">
+                                    @entree.Description
+                                </div>
+                            </div>
+                        }
+                    }
+                    <br />
+                </div>
 
-            <h2 class="sub-header">Sides</h2>
+                <div id="side-column">
+                    <h2 class="sub-header">Sides</h2>
 
-            @foreach (BleakwindBuffet.Data.IOrderItem orderItem in Model.OrderItems)
-            {
-                @if (orderItem is BleakwindBuffet.Data.Side side)
-                {
-                    <div class="menu-item">
-                        <div class="item-name">
-                            @side.ToString()
-                        </div>
-                        <div class="calories">
-                            @side.Calories
-                        </div>
-                        <div class="price">
-                            @side.Price
-                        </div>
-                    </div>
-                }
-            }
+                    @foreach (BleakwindBuffet.Data.IOrderItem orderItem in Model.OrderItems)
+                    {
+                        @if (orderItem is BleakwindBuffet.Data.Side side)
+                        {
+                            <div class="menu-item">
+                                <div class="menu-specifications">
+                                    <div class="item-name">
+                                        @side.ToString()
+                                    </div>
+                                    <div class="calories">
+                                        @side.Calories
+                                    </div>
+                                    <div class="price">
+                                        @side.Price
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="description">
+                                    @side.Description
+                                </div>
+                            </div>
+                        }
+                    }
+                    <br />
+                </div>
 
-            <h2 class="sub-header">Drinks</h2>
+                <div id="drink-column">
+                    <h2 class="sub-header">Drinks</h2>
 
-            @foreach (BleakwindBuffet.Data.IOrderItem orderItem in Model.OrderItems)
-            {
-                @if (orderItem is BleakwindBuffet.Data.Drink drink)
-                {
-                    <div class="menu-item">
-                        <div class="item-name">
-                            @drink.ToString()
-                        </div>
-                        <div class="calories">
-                            @drink.Calories
-                        </div>
-                        <div class="price">
-                            @drink.Price
-                        </div>
-                    </div>
-                }
-            }
-
+                    @foreach (BleakwindBuffet.Data.IOrderItem orderItem in Model.OrderItems)
+                    {
+                        @if (orderItem is BleakwindBuffet.Data.Drink drink)
+                        {
+                            <div class="menu-item">
+                                <div class="menu-specifications">
+                                    <div class="item-name">
+                                        @drink.ToString()
+                                    </div>
+                                    <div class="calories">
+                                        @drink.Calories
+                                    </div>
+                                    <div class="price">
+                                        @drink.Price
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="description">
+                                    @drink.Description
+                                </div>
+                            </div>
+                        }
+                    }
+                    <br />
+                </div>
+            </div>
             <br />
         </div>
     </form>
+
     <h2>Combo Details</h2>
 
     <p>Any entree, side, and drink can be combined to result in a <i>combo</i>. Combining these items into a combo will result in a 1$ discount!</p>

@@ -189,6 +189,17 @@ namespace BleakwindBuffet.Data
         }
 
         /// <summary>
+        /// Descriptions of every item in the Combo seperated by newlines.
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                return (entree.Description + "\n" + side.Description + "\n" + drink.Description);
+            }
+        }
+
+        /// <summary>
         /// A custom EventListener used to invoke the corresponding EventHandlers whenever a property of one of the child objects is changed, whether it be Price, Calories, or the SpecialInstructions.
         /// </summary>
         /// <param name="sender">This is the EventHandler this Listener is attached to, typically the PropertyChanged handler being invoked regarding a property being changed.</param>

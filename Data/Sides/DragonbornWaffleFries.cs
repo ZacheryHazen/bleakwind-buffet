@@ -103,7 +103,18 @@ namespace BleakwindBuffet.Data.Sides
         }
 
         /// <summary>
-        /// Returns a description of the Dragornborn Waffle Fries
+        /// Holds the description of the Dragonborn Waffle Fries.
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Crispy fried potato waffle fries.";
+            }
+        }
+
+        /// <summary>
+        /// Returns the name of the Dragornborn Waffle Fries
         /// </summary>
         /// <returns>A string containing the description of the Dragonborn Waffle Fries</returns>
         public override string ToString()

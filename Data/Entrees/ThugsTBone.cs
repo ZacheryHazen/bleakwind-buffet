@@ -46,7 +46,18 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Returns a description of the Thugs T-Bone
+        /// Holds the description of the Thugs T-Bone.
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Juicy T-Bone, not much else to say.";
+            }
+        }
+
+        /// <summary>
+        /// Returns the name of the Thugs T-Bone
         /// </summary>
         /// <returns>A string containing the name of the Thugs T-Bone</returns>
         public override string ToString()

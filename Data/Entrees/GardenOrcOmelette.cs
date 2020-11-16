@@ -158,7 +158,18 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Returns a description of the Garden Orc Omelette
+        /// Holds the description of the Garden Orc Omelette.
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Vegetarian. Two egg omelette packed with a mix of broccoli, mushrooms, and tomatoes. Topped with cheddar cheese.";
+            }
+        }
+
+        /// <summary>
+        /// Returns the name of the Garden Orc Omelette
         /// </summary>
         /// <returns>A string containing the name of the Garden Orc Omelette</returns>
         public override string ToString()

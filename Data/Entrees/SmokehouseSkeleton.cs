@@ -156,9 +156,20 @@ namespace BleakwindBuffet.Data.Entrees
                 return ToString();
             }
         }
-        
+
         /// <summary>
-        /// Returns a description of the Smokehouse Skeleton
+        /// Holds the description of the Smokehouse Skeleton.
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Put some meat on those bones with a small stack of pancakes. Includes sausage links, eggs, and hash browns on the side. Topped with the syrup of your choice.";
+            }
+        }
+
+        /// <summary>
+        /// Returns the name of the Smokehouse Skeleton
         /// </summary>
         /// <returns>A string containing the name of the Smokehouse Skeleton</returns>
         public override string ToString()

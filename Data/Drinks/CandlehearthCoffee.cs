@@ -175,7 +175,18 @@ namespace BleakwindBuffet.Data.Drinks
         }
 
         /// <summary>
-        /// Returns a description of the coffee
+        /// Holds the description of the Candlehearth Coffee.
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Fair trade, fresh ground dark roast coffee.";
+            }
+        }
+
+        /// <summary>
+        /// Returns the name of the coffee
         /// </summary>
         /// <returns>A string containing a description of the coffee</returns>
         public override string ToString()

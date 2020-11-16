@@ -152,21 +152,26 @@ namespace BleakwindBuffet.Data
         /// <returns>This is the filtered list of IOrderItems.</returns>
         public static IEnumerable<IOrderItem> Search(IEnumerable<IOrderItem> orderItems, string text)
         { 
-            if (text == null)
+            if (text != null)
             {
-                return orderItems;
-            }
+                List<IOrderItem> filteredItems = new List<IOrderItem>();
+                string[] searchTerms = text.Split(' ');
 
-            List<IOrderItem> filteredItems = new List<IOrderItem>();
-            foreach (IOrderItem orderItem in orderItems)
-            {
-                if (orderItem.ToString().ToLower().Contains(text.ToLower()))
+                foreach (string term in searchTerms)
                 {
-                    filteredItems.Add(orderItem);
-                }  
+                    List<IOrderItem> newTerms = orderItems.Where(orderItem => (orderItem.ToString().ToLower().Contains(term.ToLower()) || orderItem.Description.ToLower().Contains(term.ToLower()))).ToList();
+                    foreach(IOrderItem newItem in newTerms)
+                    {
+                        if (!filteredItems.Contains(newItem))
+                        {
+                            filteredItems.Add(newItem);
+                        }
+                    }
+                }
+                return filteredItems;
             }
 
-            return filteredItems;
+            return orderItems;
         }
 
         /// <summary>
@@ -183,21 +188,8 @@ namespace BleakwindBuffet.Data
             }
 
             List<IOrderItem> filteredItems = new List<IOrderItem>();
-            foreach (IOrderItem orderItem in orderItems)
-            {
-                if (categories.Contains("Entrees") && orderItem is Entree)
-                {
-                    filteredItems.Add(orderItem);
-                }
-                else if (categories.Contains("Sides") && orderItem is Side)
-                {
-                    filteredItems.Add(orderItem);
-                }
-                else if (categories.Contains("Drinks") && orderItem is Drink)
-                {
-                    filteredItems.Add(orderItem);
-                }
-            }
+
+            filteredItems = orderItems.Where(orderItem => ((orderItem is Entree && categories.Contains("Entrees")) || (orderItem is Side && categories.Contains("Sides")) || (orderItem is Drink && categories.Contains("Drinks")))).ToList();
 
             return filteredItems;
         }
@@ -212,45 +204,27 @@ namespace BleakwindBuffet.Data
         /// <returns>This is the filtered list of IOrderItems.</returns>
         public static IEnumerable<IOrderItem> FilterByCalories(IEnumerable<IOrderItem> orderItems, int? min, int? max)
         {
-            if (min == null && max == null)
+            if (min != null || max != null)
             {
-                return orderItems;
+                List<IOrderItem> filteredItems = new List<IOrderItem>();
+
+                if (min == null)
+                {
+                    filteredItems = orderItems.Where(orderItem => orderItem.Calories <= max).ToList();
+                }
+                else if (max == null)
+                {
+                    filteredItems = orderItems.Where(orderItem => orderItem.Calories >= min).ToList();
+                }
+                else
+                {
+                    filteredItems = orderItems.Where(orderItem => (orderItem.Calories >= min && orderItem.Calories <= max)).ToList();
+                }
+
+                return filteredItems;
             }
 
-            List<IOrderItem> filteredItems = new List<IOrderItem>();
-
-            if (min == null)
-            {
-                foreach(IOrderItem orderItem in orderItems)
-                {
-                    if (orderItem.Calories <= max)
-                    {
-                        filteredItems.Add(orderItem);
-                    }
-                }
-            }
-            else if (max == null)
-            {
-                foreach (IOrderItem orderItem in orderItems)
-                {
-                    if (orderItem.Calories >= min)
-                    {
-                        filteredItems.Add(orderItem);
-                    }
-                }
-            }
-            else
-            {
-                foreach(IOrderItem orderItem in orderItems)
-                {
-                    if (orderItem.Calories >= min && orderItem.Calories <= max)
-                    {
-                        filteredItems.Add(orderItem);
-                    }
-                }
-            }
-
-            return filteredItems;
+            return orderItems;
         }
 
         /// <summary>
@@ -263,44 +237,27 @@ namespace BleakwindBuffet.Data
         /// <returns>This is the filtered list of IOrderItems.</returns>
         public static IEnumerable<IOrderItem> FilterByPrice(IEnumerable<IOrderItem> orderItems, double? min, double? max)
         {
-            if (min == null && max == null)
+            if (min != null || max != null)
             {
-                return orderItems;
+                List<IOrderItem> filteredItems = new List<IOrderItem>();
+
+                if (min == null)
+                {
+                    filteredItems = orderItems.Where(orderItem => orderItem.Price <= max).ToList();
+                }
+                else if (max == null)
+                {
+                    filteredItems = orderItems.Where(orderItem => orderItem.Price >= min).ToList();
+                }
+                else
+                {
+                    filteredItems = orderItems.Where(orderItem => (orderItem.Price >= min && orderItem.Price <= max)).ToList();
+                }
+
+                return filteredItems;
             }
 
-            List<IOrderItem> filteredItems = new List<IOrderItem>();
-
-            if (min == null)
-            {
-                foreach (IOrderItem orderItem in orderItems)
-                {
-                    if (orderItem.Price <= max)
-                    {
-                        filteredItems.Add(orderItem);
-                    }
-                }
-            }
-            else if (max == null)
-            {
-                foreach (IOrderItem orderItem in orderItems)
-                {
-                    if (orderItem.Price >= min)
-                    {
-                        filteredItems.Add(orderItem);
-                    }
-                }
-            }
-            else
-            {
-                foreach (IOrderItem orderItem in orderItems)
-                {
-                    if (orderItem.Price >= min && orderItem.Price <= max)
-                    {
-                        filteredItems.Add(orderItem);
-                    }
-                }
-            }
-            return filteredItems;
+            return orderItems;
         }
     }
 }

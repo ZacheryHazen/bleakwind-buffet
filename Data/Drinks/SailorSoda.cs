@@ -139,7 +139,18 @@ namespace BleakwindBuffet.Data.Drinks
         }
 
         /// <summary>
-        /// Returns a description of the soda
+        /// Holds the description of the Sailor Soda.
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "An old-fashioned jerked soda, carbonated water and flavored syrup poured over a bed of crushed ice.";
+            }
+        }
+
+        /// <summary>
+        /// Returns the name of the soda
         /// </summary>
         /// <returns>A string containing a description of the soda</returns>
         public override string ToString()

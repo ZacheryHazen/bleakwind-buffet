@@ -347,12 +347,8 @@ namespace BleakwindBuffet.DataTests.UnitTests
             );
         }
 
-        [Theory]
-        [InlineData (3, "or")]
-        [InlineData(2, "ri")]
-        [InlineData(1, "t")]
-        [InlineData(0, "xy")]
-        public void SearchingATermShouldReturnTheCorrectResult(int count, string query)
+        [Fact]
+        public void SearchingATermShouldReturnTheCorrectResult()
         {
             List<IOrderItem> orderItems = new List<IOrderItem>();
             ThalmorTriple TT = new ThalmorTriple();
@@ -363,8 +359,47 @@ namespace BleakwindBuffet.DataTests.UnitTests
             orderItems.Add(DWF);
             orderItems.Add(SS);
 
-            List<IOrderItem> test = Menu.Search(orderItems, query).ToList();
-            Assert.Equal(count, test.Count);
+            List<IOrderItem> test = Menu.Search(orderItems, "Thalmor").ToList();
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(TT, test[0])
+            );
+        }
+
+        [Fact]
+        public void SearchingAMultipleTermQueryShouldReturnTheCorrectResultsFromTheTitleAndDescription()
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            ThalmorTriple TT = new ThalmorTriple();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(TT);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.Search(orderItems, "patties Dragonborn").ToList();
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(TT, test[0]),
+                item => Assert.Equal(DWF, test[1])
+            );
+        }
+
+        [Fact]
+        public void SearchingAMultipleTermQueryShouldNotReturnDuplicateResults()
+        {
+            List<IOrderItem> orderItems = new List<IOrderItem>();
+            ThalmorTriple TT = new ThalmorTriple();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            SailorSoda SS = new SailorSoda();
+
+            orderItems.Add(TT);
+            orderItems.Add(DWF);
+            orderItems.Add(SS);
+
+            List<IOrderItem> test = Menu.Search(orderItems, "Dragonborn Dragonborn").ToList();
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(DWF, test[0])
+            );
         }
 
         [Fact]
@@ -388,14 +423,11 @@ namespace BleakwindBuffet.DataTests.UnitTests
             );
         }
 
-        [Theory]
-        [InlineData(0, "")]
-        [InlineData(1, "Entrees")]
-        [InlineData(2, "Entrees", "Sides")]
-        [InlineData(3, "Entrees", "Sides", "Drinks")]
-        public void SearchingACategoryShouldReturnTheCorrectResult(int count, params string[] categories)
+        [Fact]
+        public void SearchingACategoryShouldReturnTheCorrectResult()
         {
             List<IOrderItem> orderItems = new List<IOrderItem>();
+            string[] categories = { "Entrees", "Sides" };
             BriarheartBurger BB = new BriarheartBurger();
             DragonbornWaffleFries DWF = new DragonbornWaffleFries();
             SailorSoda SS = new SailorSoda();
@@ -406,7 +438,10 @@ namespace BleakwindBuffet.DataTests.UnitTests
 
             List<IOrderItem> test = Menu.FilterByCategory(orderItems, categories).ToList();
 
-            Assert.Equal(count, test.Count);
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(BB, test[0]),
+                item => Assert.Equal(DWF, test[1])
+                );
         }
 
         [Fact]
@@ -430,12 +465,8 @@ namespace BleakwindBuffet.DataTests.UnitTests
             );
         }
 
-        [Theory]
-        [InlineData(0, 0)]
-        [InlineData(1, 1)]
-        [InlineData(2, 2.0)]
-        [InlineData(3, 10.0)]
-        public void NullMinPriceShouldReturnUpToMaxPriceOrderItems(int count, double? max)
+        [Fact]
+        public void NullMinPriceShouldReturnUpToMaxPriceOrderItems()
         {
             List<IOrderItem> orderItems = new List<IOrderItem>();
             BriarheartBurger BB = new BriarheartBurger();
@@ -446,17 +477,16 @@ namespace BleakwindBuffet.DataTests.UnitTests
             orderItems.Add(DWF);
             orderItems.Add(SS);
 
-            List<IOrderItem> test = Menu.FilterByPrice(orderItems, null, max).ToList();
+            List<IOrderItem> test = Menu.FilterByPrice(orderItems, null, 2.0).ToList();
 
-            Assert.Equal(count, test.Count);
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(DWF, test[0]),
+                item => Assert.Equal(SS, test[1])
+            );
         }
 
-        [Theory]
-        [InlineData(0, 10)]
-        [InlineData(1, 5)]
-        [InlineData(2, 1)]
-        [InlineData(3, 0)]
-        public void NullMaxPriceShouldReturnUpToMinPriceOrderItems(int count, double? min)
+        [Fact]
+        public void NullMaxPriceShouldReturnUpToMinPriceOrderItems()
         {
             List<IOrderItem> orderItems = new List<IOrderItem>();
             BriarheartBurger BB = new BriarheartBurger();
@@ -467,19 +497,16 @@ namespace BleakwindBuffet.DataTests.UnitTests
             orderItems.Add(DWF);
             orderItems.Add(SS);
 
-            List<IOrderItem> test = Menu.FilterByPrice(orderItems, min, null).ToList();
+            List<IOrderItem> test = Menu.FilterByPrice(orderItems, 1.0, null).ToList();
 
-            Assert.Equal(count, test.Count);
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(BB, test[0]),
+                item => Assert.Equal(SS, test[1])
+            );
         }
 
-        [Theory]
-        [InlineData(0, 0, 0)]
-        [InlineData(3, 0, 10)]
-        [InlineData(1, 0, 1)]
-        [InlineData(2, 0, 2)]
-        [InlineData(2, 1, 8)]
-        [InlineData(1, 6, 8)]
-        public void SearchingWithMinAndMaxPriceShouldReturnCorrectResults(int count, double min, double max)
+        [Fact]
+        public void SearchingWithMinAndMaxPriceShouldReturnCorrectResults()
         {
             List<IOrderItem> orderItems = new List<IOrderItem>();
             BriarheartBurger BB = new BriarheartBurger();
@@ -490,16 +517,16 @@ namespace BleakwindBuffet.DataTests.UnitTests
             orderItems.Add(DWF);
             orderItems.Add(SS);
 
-            List<IOrderItem> test = Menu.FilterByPrice(orderItems, min, max).ToList();
+            List<IOrderItem> test = Menu.FilterByPrice(orderItems, 0, 2).ToList();
 
-            Assert.Equal(count, test.Count);
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(DWF, test[0]),
+                item => Assert.Equal(SS, test[1])
+            );
         }
 
-        [Theory]
-        [InlineData(.42)]
-        [InlineData(1.42)]
-        [InlineData(6.32)]
-        public void SearchingTheExactPriceShouldReturnTheCorrectResult(double price)
+        [Fact]
+        public void SearchingTheExactPriceShouldReturnTheCorrectResult()
         {
             List<IOrderItem> orderItems = new List<IOrderItem>();
             BriarheartBurger BB = new BriarheartBurger();
@@ -510,9 +537,11 @@ namespace BleakwindBuffet.DataTests.UnitTests
             orderItems.Add(DWF);
             orderItems.Add(SS);
 
-            List<IOrderItem> test = Menu.FilterByPrice(orderItems, price, price).ToList();
+            List<IOrderItem> test = Menu.FilterByPrice(orderItems, 1.42, 1.42).ToList();
 
-            Assert.Single(test);
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(SS, test[0])
+            );
         }
 
         [Fact]
@@ -536,12 +565,8 @@ namespace BleakwindBuffet.DataTests.UnitTests
             );
         }
 
-        [Theory]
-        [InlineData(0, 0)]
-        [InlineData(1, 100)]
-        [InlineData(2, 200)]
-        [InlineData(3, 1000)]
-        public void NullMinCaloriesShouldReturnUpToMaxCaloriesOrderItems(int count, int? max)
+        [Fact]
+        public void NullMinCaloriesShouldReturnUpToMaxCaloriesOrderItems()
         {
             List<IOrderItem> orderItems = new List<IOrderItem>();
             BriarheartBurger BB = new BriarheartBurger();
@@ -552,18 +577,17 @@ namespace BleakwindBuffet.DataTests.UnitTests
             orderItems.Add(DWF);
             orderItems.Add(SS);
 
-            List<IOrderItem> test = Menu.FilterByCalories(orderItems, null, max).ToList();
+            List<IOrderItem> test = Menu.FilterByCalories(orderItems, null, 200).ToList();
 
-            Assert.Equal(count, test.Count);
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(DWF, test[0]),
+                item => Assert.Equal(SS, test[1])
+            );
 
         }
 
-        [Theory]
-        [InlineData(0, 1000)]
-        [InlineData(1, 700)]
-        [InlineData(2, 100)]
-        [InlineData(3, 0)]
-        public void NullMaxCaloriesShouldReturnUpToMinCaloriesOrderItems(int count, int min)
+        [Fact]
+        public void NullMaxCaloriesShouldReturnUpToMinCaloriesOrderItems()
         {
             List<IOrderItem> orderItems = new List<IOrderItem>();
             BriarheartBurger BB = new BriarheartBurger();
@@ -574,19 +598,16 @@ namespace BleakwindBuffet.DataTests.UnitTests
             orderItems.Add(DWF);
             orderItems.Add(SS);
 
-            List<IOrderItem> test = Menu.FilterByCalories(orderItems, min, null).ToList();
+            List<IOrderItem> test = Menu.FilterByCalories(orderItems, 100, null).ToList();
 
-            Assert.Equal(count, test.Count);
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(BB, test[0]),
+                item => Assert.Equal(SS, test[1])
+            );
         }
 
-        [Theory]
-        [InlineData(0, 0, 0)]
-        [InlineData(3, 0, 1000)]
-        [InlineData(1, 0, 100)]
-        [InlineData(2, 0, 200)]
-        [InlineData(2, 100, 800)]
-        [InlineData(1, 600, 800)]
-        public void SearchingWithMinAndMaxCaloriesShouldReturnCorrectResults(int count, int min, int max)
+        [Fact]
+        public void SearchingWithMinAndMaxCaloriesShouldReturnCorrectResults()
         {
             List<IOrderItem> orderItems = new List<IOrderItem>();
             BriarheartBurger BB = new BriarheartBurger();
@@ -597,16 +618,16 @@ namespace BleakwindBuffet.DataTests.UnitTests
             orderItems.Add(DWF);
             orderItems.Add(SS);
 
-            List<IOrderItem> test = Menu.FilterByCalories(orderItems, min, max).ToList();
+            List<IOrderItem> test = Menu.FilterByCalories(orderItems, 0, 200).ToList();
 
-            Assert.Equal(count, test.Count);
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(DWF, test[0]),
+                item => Assert.Equal(SS, test[1])
+            );
         }
 
-        [Theory]
-        [InlineData(77)]
-        [InlineData(117)]
-        [InlineData(743)]
-        public void SearchingTheExactCalorieValueShouldReturnTheCorrectResult(int price)
+        [Fact]
+        public void SearchingTheExactCalorieValueShouldReturnTheCorrectResult()
         {
             List<IOrderItem> orderItems = new List<IOrderItem>();
             BriarheartBurger BB = new BriarheartBurger();
@@ -617,9 +638,11 @@ namespace BleakwindBuffet.DataTests.UnitTests
             orderItems.Add(DWF);
             orderItems.Add(SS);
 
-            List<IOrderItem> test = Menu.FilterByCalories(orderItems, price, price).ToList();
+            List<IOrderItem> test = Menu.FilterByCalories(orderItems, 117, 117).ToList();
 
-            Assert.Single(test);
+            Assert.Collection<IOrderItem>(test,
+                item => Assert.Equal(SS, test[0])
+            );
         }
     }
 }

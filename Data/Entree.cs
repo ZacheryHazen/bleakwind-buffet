@@ -24,5 +24,7 @@ namespace BleakwindBuffet.Data
         public abstract uint Calories { get; }
         // List of strings to hold any special instructions to be used when preparing the entree.
         public abstract List<string> SpecialInstructions { get; }
+        // String holding a description of the entree.
+        public abstract string Description { get; }
     }
 }

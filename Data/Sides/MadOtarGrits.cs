@@ -102,7 +102,18 @@ namespace BleakwindBuffet.Data.Sides
         }
 
         /// <summary>
-        /// Returns a description of the Mad Otar Grits
+        /// Holds the description of the Mad Otar Grits.
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Cheesy Grits.";
+            }
+        }
+
+        /// <summary>
+        /// Returns the name of the Mad Otar Grits
         /// </summary>
         /// <returns>A string containing the description of the Mad Otar Grits</returns>
         public override string ToString()

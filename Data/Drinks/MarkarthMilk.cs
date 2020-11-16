@@ -125,7 +125,18 @@ namespace BleakwindBuffet.Data.Drinks
         }
 
         /// <summary>
-        /// Returns a description of the milk to be served.
+        /// Holds the description of the Markarth Milk.
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Hormone-free organic 2% milk.";
+            }
+        }
+
+        /// <summary>
+        /// Returns the name of the milk to be served.
         /// </summary>
         /// <returns>Returns a string containing a description of the milk</returns>
         public override string ToString()

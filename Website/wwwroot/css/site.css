@@ -82,10 +82,30 @@ body {
 /* Specialized styles for Bleakwind Buffet
 **************************************************** */
 
-.menu-item {
-    display:flex;
-    border-bottom: 1px dotted;
+#item-columns {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+#entree-column {
+    grid-column: 1;
+    margin-right: 30px;
+}
+
+#side-column {
+    grid-column: 2;
+    margin-right: 30px;
+}
+
+#drink-column {
+    grid-column: 3;
+}
+
+.menu-specifications {
+    display: flex;
+    flex-direction: row;
     justify-content: flex-end;
+    border-bottom: 1px dotted;
 }
 
 .item-name {
@@ -162,20 +182,24 @@ ul.sodaflavors {
     flex-wrap: nowrap;
 }
 
-#item-options {
+#item-options, #calorie-options, #price-options {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
 }
 
-#calorie-options {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-}
+@media (max-width: 490px) {
+    #item-columns {
+        display: flex;
+        flex-direction: column;
+    }
+    #entree-column {
 
-#price-options {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+    }
+    #side-column {
+
+    }
+    #drink-column {
+
+    }
 }

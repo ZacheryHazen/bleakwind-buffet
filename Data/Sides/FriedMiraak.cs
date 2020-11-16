@@ -102,7 +102,18 @@ namespace BleakwindBuffet.Data.Sides
         }
 
         /// <summary>
-        /// Returns a description of the Fried Miraak
+        /// Holds the description of the Fried Miraak.
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Perfectly prepared hash brown pancakes.";
+            }
+        }
+
+        /// <summary>
+        /// Returns the name of the Fried Miraak
         /// </summary>
         /// <returns>A string containing the description of the Fried Miraak</returns>
         public override string ToString()

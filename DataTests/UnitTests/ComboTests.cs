@@ -231,5 +231,16 @@ namespace BleakwindBuffet.DataTests.UnitTests
 
             Assert.Equal(expectedList, combo.SpecialInstructions.ToArray());
         }
+
+        [Fact]
+        public void DescriptionShouldReturnAConcatenatedStringOfItemsDescriptionDelimitedByNewLines()
+        {
+            BriarheartBurger BB = new BriarheartBurger();
+            DragonbornWaffleFries DWF = new DragonbornWaffleFries();
+            AretinoAppleJuice AAJ = new AretinoAppleJuice();
+            Combo combo = new Combo(BB, DWF, AAJ);
+
+            Assert.Equal(BB.Description + "\n" + DWF.Description + "\n" + AAJ.Description, combo.Description);
+        }
     }
 }

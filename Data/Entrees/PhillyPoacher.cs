@@ -133,7 +133,18 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Returns a description of the Philly Poacher
+        /// Holds the description of the Philly Poacher.
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Cheesesteak sandwich made from grilled sirloin, topped with onions on a fried roll.";
+            }
+        }
+
+        /// <summary>
+        /// Returns the name of the Philly Poacher
         /// </summary>
         /// <returns>A string containing the name of the Philly Poacher</returns>
         public override string ToString()

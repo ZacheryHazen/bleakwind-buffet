@@ -237,5 +237,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 
             Assert.Equal(SS.Name, name);
         }
+
+        [Fact]
+        public void DescriptionShouldReturnTheCorrectString()
+        {
+            SailorSoda SS = new SailorSoda();
+            Assert.Equal("An old-fashioned jerked soda, carbonated water and flavored syrup poured over a bed of crushed ice.", SS.Description);
+        }
     }
 }

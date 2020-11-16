@@ -151,7 +151,18 @@ namespace BleakwindBuffet.Data.Drinks
         }
 
         /// <summary>
-        /// Returns a description of the water
+        /// Holds the description of the Warrior Water.
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "It’s water. Just water.";
+            }
+        }
+
+        /// <summary>
+        /// Returns the name of the water
         /// </summary>
         /// <returns>A string containing a description of the water</returns>
         public override string ToString()
